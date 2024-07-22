@@ -20,7 +20,8 @@ const DayEvent = ({
     color,
     height,
     id,
-    ref3
+    ref3,
+    eventType
 
 }: {
     dayConstraintsRef: any,
@@ -32,7 +33,8 @@ const DayEvent = ({
     description: string,
     color: string,
     id: number,
-    ref3: any
+    ref3?: any,
+    eventType: 'day' | 'week'
 
 
 }) => {
@@ -130,7 +132,7 @@ const DayEvent = ({
                     {...attributes}
                     {...listeners}
                     style={{
-                        transform: !xDrag ? `translateY(${(yAxis + (transform ? roundToNearestFive(transform?.y) : 0))}px)` : `translate3d(${xAxis + (transform ? roundToNearestDay(transform.x, ref3.current.getBoundingClientRect()) : 0)}px, ${yAxis + (transform ? roundToNearestFive(transform?.y) : 0)}px, 0)`,
+                        transform: eventType === 'week' ? (!xDrag ? `translateY(${(yAxis + (transform ? roundToNearestFive(transform?.y) : 0))}px)` : `translate3d(${xAxis + (transform ? roundToNearestDay(transform.x, ref3.current.getBoundingClientRect()) : 0)}px, ${yAxis + (transform ? roundToNearestFive(transform?.y) : 0)}px, 0)`) : eventType === 'day' ? `translateY(${(yAxis + (transform ? roundToNearestFive(transform?.y) : 0))}px)` : '',
                         height: height
 
                     }}

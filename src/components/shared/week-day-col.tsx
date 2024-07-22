@@ -68,6 +68,7 @@ const WeekDayCol = ({
                         dayConstraintsRef={parentRef}
                         day={weekDay}
                         ref3={ref3}
+                        eventType='week'
                         key={i}
 
                     />

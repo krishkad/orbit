@@ -92,6 +92,7 @@ const Day = () => {
                                 color={event.color}
                                 dayConstraintsRef={dayConstraintsRef}
                                 day={day}
+                                eventType='day'
                                 key={i}
                             />
                         })}
