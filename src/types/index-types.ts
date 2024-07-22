@@ -1,4 +1,5 @@
 import { ColumnDef } from "@tanstack/react-table"
+import { Dayjs } from "dayjs";
 
 
 export interface HotelDetailsProps {
@@ -56,3 +57,13 @@ export const columns: ColumnDef<HotelDetailsProps>[] = [
         header: "Hotel Url",
     },
 ]
+
+export interface EventProps {
+    id: number,
+    title: string,
+    description: string,
+    top: number,
+    color: string,
+    height: number,
+    day: Dayjs
+} 

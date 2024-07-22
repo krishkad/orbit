@@ -1,3 +1,4 @@
+import { generateUID } from "@/lib/utils";
 import { HotelDetailsProps } from "@/types/index-types";
 import dayjs from "dayjs";
 
@@ -303,284 +304,139 @@ export const MonthsTitle = [
 
 export const sampleWeekEvents = [
     {
+        id: generateUID(),
         title: "Event 1",
         description: "Event Description",
         top: 0,
         color: 'bg-primary',
-        day: dayjs(new Date(2024, 6, 9))
+        height: 120,
+        day: dayjs(new Date(2024, 6, new Date().getDate()))
     },
     {
+        id: generateUID(),
         title: "Event 2",
         description: "Event Description",
         top: 540,
         color: 'bg-[#feb94a]',
-        day: dayjs(new Date(2024, 6, 9))
+        height: 60,
+        day: dayjs(new Date(2024, 6, new Date().getDate()))
     },
     {
+        id: generateUID(),
         title: "Event 3",
         description: "Event Description",
         top: 300,
         color: 'bg-[#0d9937]',
-        day: dayjs(new Date(2024, 6, 9))
+        height: 60,
+        day: dayjs(new Date(2024, 6, new Date().getDate()))
     },
     {
+        id: generateUID(),
         title: "Event 4",
         description: "Event Description",
         top: 120,
         color: 'bg-[#ff595e]',
-        day: dayjs(new Date(2024, 6, 9))
+        height: 60,
+        day: dayjs(new Date(2024, 6, new Date().getDate()))
     },
     {
+        id: generateUID(),
         title: "Event 5",
         description: "Event Description",
         top: 660,
         color: 'bg-[#ff6600]',
-        day: dayjs(new Date(2024, 6, 9))
+        height: 60,
+        day: dayjs(new Date(2024, 6, new Date().getDate()))
     },
     {
+        id: generateUID(),
         title: "Event 1",
         description: "Event Description",
         top: 0,
         color: 'bg-primary',
-        day: dayjs(new Date(2024, 6, 11))
+        height: 60,
+        day: dayjs(new Date(2024, 6, new Date().getDate() - 1))
     },
     {
+        id: generateUID(),
         title: "Event 2",
         description: "Event Description",
         top: 540,
         color: 'bg-[#feb94a]',
-        day: dayjs(new Date(2024, 6, 11))
+        height: 240,
+        day: dayjs(new Date(2024, 6, new Date().getDate() - 1))
     },
     {
+        id: generateUID(),
         title: "Event 3",
         description: "Event Description",
         top: 300,
         color: 'bg-[#0d9937]',
-        day: dayjs(new Date(2024, 6, 11))
+        height: 60,
+        day: dayjs(new Date(2024, 6, new Date().getDate() - 1))
     },
     {
+        id: generateUID(),
         title: "Event 4",
         description: "Event Description",
         top: 120,
         color: 'bg-[#ff595e]',
-        day: dayjs(new Date(2024, 6, 11))
+        height: 60,
+        day: dayjs(new Date(2024, 6, new Date().getDate() - 1))
     },
     {
+        id: generateUID(),
         title: "Event 5",
         description: "Event Description",
         top: 660,
         color: 'bg-[#ff6600]',
-        day: dayjs(new Date(2024, 6, 11))
+        height: 120,
+        day: dayjs(new Date(2024, 6, new Date().getDate() - 1))
     },
     {
+        id: generateUID(),
         title: "Event 1",
         description: "Event Description",
-        top: 180,
+        top: 0,
         color: 'bg-primary',
-        day: dayjs(new Date(2024, 6, 10))
+        height: 60,
+        day: dayjs(new Date(2024, 6, new Date().getDate() + 1))
     },
     {
+        id: generateUID(),
         title: "Event 2",
         description: "Event Description",
-        top: 360,
+        top: 540,
         color: 'bg-[#feb94a]',
-        day: dayjs(new Date(2024, 6, 10))
+        height: 60,
+        day: dayjs(new Date(2024, 6, new Date().getDate() + 1))
     },
     {
+        id: generateUID(),
         title: "Event 3",
         description: "Event Description",
-        top: 720,
+        top: 300,
         color: 'bg-[#0d9937]',
-        day: dayjs(new Date(2024, 6, 10))
+        height: 60,
+        day: dayjs(new Date(2024, 6, new Date().getDate() + 1))
     },
     {
+        id: generateUID(),
         title: "Event 4",
         description: "Event Description",
-        top: 1200,
+        top: 120,
         color: 'bg-[#ff595e]',
-        day: dayjs(new Date(2024, 6, 10))
+        height: 60,
+        day: dayjs(new Date(2024, 6, new Date().getDate() + 1))
     },
     {
+        id: generateUID(),
         title: "Event 5",
         description: "Event Description",
-        top: 830,
+        top: 660,
         color: 'bg-[#ff6600]',
-        day: dayjs(new Date(2024, 6, 10))
-    },
-    {
-        title: "Event 1",
-        description: "Event Description",
-        top: 180,
-        color: 'bg-primary',
-        day: dayjs(new Date(2024, 6, 14))
-    },
-    {
-        title: "Event 2",
-        description: "Event Description",
-        top: 360,
-        color: 'bg-[#feb94a]',
-        day: dayjs(new Date(2024, 6, 14))
-    },
-    {
-        title: "Event 3",
-        description: "Event Description",
-        top: 720,
-        color: 'bg-[#0d9937]',
-        day: dayjs(new Date(2024, 6, 14))
-    },
-    {
-        title: "Event 4",
-        description: "Event Description",
-        top: 1200,
-        color: 'bg-[#ff595e]',
-        day: dayjs(new Date(2024, 6, 14))
-    },
-    {
-        title: "Event 5",
-        description: "Event Description",
-        top: 830,
-        color: 'bg-[#ff6600]',
-        day: dayjs(new Date(2024, 6, 14))
-    },
-    {
-        title: "Event 1",
-        description: "Event Description",
-        top: 180,
-        color: 'bg-primary',
-        day: dayjs(new Date(2024, 6, 17))
-    },
-    {
-        title: "Event 2",
-        description: "Event Description",
-        top: 360,
-        color: 'bg-[#feb94a]',
-        day: dayjs(new Date(2024, 6, 17))
-    },
-    {
-        title: "Event 3",
-        description: "Event Description",
-        top: 720,
-        color: 'bg-[#0d9937]',
-        day: dayjs(new Date(2024, 6, 17))
-    },
-    {
-        title: "Event 4",
-        description: "Event Description",
-        top: 1200,
-        color: 'bg-[#ff595e]',
-        day: dayjs(new Date(2024, 6, 17))
-    },
-    {
-        title: "Event 5",
-        description: "Event Description",
-        top: 830,
-        color: 'bg-[#ff6600]',
-        day: dayjs(new Date(2024, 6, 17))
-    },
-    {
-        title: "Event 1",
-        description: "Event Description",
-        top: 180,
-        color: 'bg-primary',
-        day: dayjs(new Date(2024, 6, 16))
-    },
-    {
-        title: "Event 2",
-        description: "Event Description",
-        top: 360,
-        color: 'bg-[#feb94a]',
-        day: dayjs(new Date(2024, 6, 16))
-    },
-    {
-        title: "Event 3",
-        description: "Event Description",
-        top: 720,
-        color: 'bg-[#0d9937]',
-        day: dayjs(new Date(2024, 6, 16))
-    },
-    {
-        title: "Event 4",
-        description: "Event Description",
-        top: 1200,
-        color: 'bg-[#ff595e]',
-        day: dayjs(new Date(2024, 6, 16))
-    },
-    {
-        title: "Event 5",
-        description: "Event Description",
-        top: 830,
-        color: 'bg-[#ff6600]',
-        day: dayjs(new Date(2024, 6, 16))
-    },
-    {
-        title: "Event 1",
-        description: "Event Description",
-        top: 360,
-        color: 'bg-primary',
-        day: dayjs(new Date(2024, 6, 8))
-    },
-    {
-        title: "Event 2",
-        description: "Event Description",
-        top: 60,
-        color: 'bg-[#feb94a]',
-        day: dayjs(new Date(2024, 6, 8))
-    },
-    {
-        title: "Event 3",
-        description: "Event Description",
-        top: 480,
-        color: 'bg-[#0d9937]',
-        day: dayjs(new Date(2024, 6, 8))
-    },
-    {
-        title: "Event 4",
-        description: "Event Description",
-        top: 180,
-        color: 'bg-[#ff595e]',
-        day: dayjs(new Date(2024, 6, 8))
-    },
-    {
-        title: "Event 5",
-        description: "Event Description",
-        top: 900,
-        color: 'bg-[#ff6600]',
-        day: dayjs(new Date(2024, 6, 8))
-    },
-    {
-        title: "Event 1",
-        description: "Event Description",
-        top: 360,
-        color: 'bg-primary',
-        day: dayjs(new Date(2024, 6, new Date().getDate()))
-    },
-    {
-        title: "Event 2",
-        description: "Event Description",
-        top: 60,
-        color: 'bg-[#feb94a]',
-        day: dayjs(new Date(2024, 6, new Date().getDate()))
-    },
-    {
-        title: "Event 3",
-        description: "Event Description",
-        top: 480,
-        color: 'bg-[#0d9937]',
-        day: dayjs(new Date(2024, 6, new Date().getDate()))
-    },
-    {
-        title: "Event 4",
-        description: "Event Description",
-        top: 180,
-        color: 'bg-[#ff595e]',
-        day: dayjs(new Date(2024, 6, new Date().getDate()))
-    },
-    {
-        title: "Event 5",
-        description: "Event Description",
-        top: 900,
-        color: 'bg-[#ff6600]',
-        day: dayjs(new Date(2024, 6, new Date().getDate()))
+        height: 60,
+        day: dayjs(new Date(2024, 6, new Date().getDate() + 1))
     },
 
 
@@ -589,33 +445,43 @@ export const sampleWeekEvents = [
 ];
 export const sampleEvents = [
     {
+        id: generateUID(),
         title: "Event 1",
         description: "Event Description",
         top: 0,
+        height: 60,
         color: 'bg-primary'
     },
     {
+        id: generateUID(),
         title: "Event 2",
         description: "Event Description",
         top: 540,
+        height: 60,
         color: 'bg-[#feb94a]'
     },
     {
+        id: generateUID(),
         title: "Event 3",
         description: "Event Description",
         top: 300,
+        height: 60,
         color: 'bg-[#0d9937]'
     },
     {
+        id: generateUID(),
         title: "Event 4",
         description: "Event Description",
         top: 120,
+        height: 60,
         color: 'bg-[#ff595e]'
     },
     {
+        id: generateUID(),
         title: "Event 5",
         description: "Event Description",
         top: 660,
+        height: 60,
         color: 'bg-[#ff6600]'
     },
 ];

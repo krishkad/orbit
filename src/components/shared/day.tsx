@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useState } from 'react'
 import dayjs from 'dayjs';
-import { deserializeDayHours, getDayHours } from '@/lib/utils';
+import { calculateStartAndEndTimes, deserializeDayHours, getDayHours, roundToNearestFive } from '@/lib/utils';
 import SchedulerDialog from './scheduler-dialog';
 import { useAppSelector } from '@/redux/hooks/redux-hooks';
 import { motion, useMotionValue } from 'framer-motion';
@@ -12,6 +12,7 @@ import {
     ResizablePanelGroup,
 } from "@/components/ui/resizable"
 import { sampleEvents } from '@/constant/constant';
+import { closestCorners, DndContext, DragEndEvent, DragMoveEvent, DragStartEvent, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
 
 
 const Day = () => {
@@ -25,7 +26,7 @@ const Day = () => {
     const daySerialize = useAppSelector((state) => state.calendar.day);
     const day = dayjs(daySerialize);
     const dayConstraintsRef = useRef(null);
-    const parentRef = useRef<HTMLDivElement>(null);
+    const parentRef: any = useRef<HTMLDivElement>(null);
 
     const [lastTap, setLastTap] = useState(0);
     const [eventList, setEventList] = useState(sampleEvents)
@@ -44,6 +45,11 @@ const Day = () => {
         }
         setLastTap(now);
     };
+
+    const sensors = useSensors(
+        useSensor(PointerSensor),
+        useSensor(KeyboardSensor),
+    );
 
     return (
 
@@ -70,15 +76,40 @@ const Day = () => {
                     }}
                     ref={parentRef}
                 >
-                    {eventList.map((event, i) => {
-                        return <DayEvent drag='y' parentRef={parentRef} top={event.top} title={event.title} description={event.description} color={event.color} dayConstraintsRef={dayConstraintsRef} day={day} key={i} />
-                    })}
+                    <DndContext
+                        sensors={sensors}
+                        collisionDetection={closestCorners}
+                    >
+
+                        {eventList.map((event, i) => {
+                            return <DayEvent
+                                parentRef={parentRef}
+                                top={event.top}
+                                title={event.title}
+                                id={event.id}
+                                height={event.height}
+                                description={event.description}
+                                color={event.color}
+                                dayConstraintsRef={dayConstraintsRef}
+                                day={day}
+                                key={i}
+                            />
+                        })}
 
 
 
+                    </DndContext>
                 </div>
             </div>
-            <SchedulerDialog day={day} time={selectDay.time} dialogOpen={dialogOpen} setDialogOpen={setdialogOpen} y={0} eventList={eventList} setEventList={setEventList} />
+            <SchedulerDialog
+                day={day}
+                time={selectDay.time}
+                dialogOpen={dialogOpen}
+                setDialogOpen={setdialogOpen}
+                y={0}
+                eventList={eventList}
+                setEventList={setEventList}
+            />
         </div>
     )
 }

@@ -13,16 +13,34 @@ import { Button } from '../ui/button';
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from '../ui/badge';
-import { cn, getCurrentDay, getTimeInHours, roundToNearestFive, roundToNearestSixty } from '@/lib/utils';
+import { cn, generateUID, getCurrentDay, getTimeInHours, roundToNearestFive, roundToNearestSixty } from '@/lib/utils';
 import dayjs from 'dayjs';
 import { Textarea } from '../ui/textarea';
 import { sampleEvents } from '@/constant/constant';
 import { Check, CircleCheck } from 'lucide-react';
 
-const SchedulerDialog = ({ dialogOpen, setDialogOpen, day, time, y, eventList, setEventList }: { dialogOpen: boolean, setDialogOpen: (value: boolean) => void, day: any, time?: string, y: number, eventList: any, setEventList: (value: any) => void }) => {
+const SchedulerDialog = ({
+    dialogOpen,
+    setDialogOpen,
+    day,
+    time,
+    y,
+    eventList,
+    setEventList
+}: {
+    dialogOpen: boolean,
+    setDialogOpen: (value: boolean) => void,
+    day: any,
+    time?: string,
+    y: number,
+    eventList: any,
+    setEventList: (value: any) => void
+
+}) => {
     const yPosition = roundToNearestSixty(y);
 
     const [eventInfo, setEventInfo] = useState({
+        id: generateUID(),
         title: '',
         description: '',
         top: yPosition,
@@ -34,7 +52,8 @@ const SchedulerDialog = ({ dialogOpen, setDialogOpen, day, time, y, eventList, s
 
     const handleOnChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         e.preventDefault();
-        setEventInfo({ ...eventInfo, [e.target.name]: e.target.value, top: yPosition, day });
+        const UID = generateUID();
+        setEventInfo({ ...eventInfo, [e.target.name]: e.target.value, top: yPosition, day, id: UID });
     };
     const handleSchedularTask = (e: any) => {
         e.preventDefault();
@@ -42,11 +61,6 @@ const SchedulerDialog = ({ dialogOpen, setDialogOpen, day, time, y, eventList, s
         setEventList(eventList);
         console.log({ list: eventList });
     };
-
-    // useEffect(() => {
-    //     console.log({ yPosition });
-    //     console.log({  });
-    // }, [yPosition]);
 
 
     return (

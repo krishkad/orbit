@@ -1,7 +1,7 @@
 "use client";
-import { sampleWeekEvents } from '@/constant/constant';
-import { cn, deserializeDayHours, deserializeMonth, excludeDisabledWeek, getCurrentDay, getCurrentWeekInMonth, getDayHours } from '@/lib/utils';
-import { changeWeek, changeWeekNumber } from '@/redux/features/calendar-slice';
+import { sampleEvents, sampleWeekEvents } from '@/constant/constant';
+import { calculateStartAndEndTimes, cn, deserializeDayHours, deserializeMonth, excludeDisabledWeek, getCurrentDay, getCurrentWeekInMonth, getDayHours } from '@/lib/utils';
+import { changeWeekNumber } from '@/redux/features/calendar-slice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/redux-hooks';
 import dayjs from 'dayjs';
 import React, { Fragment, useEffect, useRef, useState } from 'react'
@@ -13,6 +13,8 @@ import {
     ResizablePanelGroup,
 } from "@/components/ui/resizable"
 import SchedulerDialog from './scheduler-dialog';
+import { closestCorners, DndContext, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
+import WeekDayCol from './week-day-col';
 
 
 const Week = () => {
@@ -24,21 +26,19 @@ const Week = () => {
     const rawMonth = deserializeMonth(serializedMonth);
     const month = excludeDisabledWeek(rawMonth)?.month;
     const weekIdx = getCurrentWeekInMonth(month);
-    // const weekDayRef = useRef(null);
-    const parentRef = useRef<HTMLDivElement>(null);
-    const weekParentRef = useRef(null)
+    const parentRef: any = useRef<HTMLDivElement>(null);
     const [dialogOpen, setDialogOpen] = useState(false);
     const [lastTap, setLastTap] = useState(0);
-    const [eventDate, setEventDate] = useState<{ day: any, y: number }>
-        ({
-            day: dayjs(new Date()),
-            y: 0
-        });
-    const [eventList, setEventList] = useState(sampleWeekEvents)
+    const [eventDate, setEventDate] = useState<{ day: any, y: number }>({
+        day: dayjs(new Date()),
+        y: 0
+    });
+    const [eventList, setEventList] = useState(sampleWeekEvents);
     const dispatch = useAppDispatch();
 
     const ref1 = useRef(null);
     const ref2 = useRef(null);
+    const ref3 = useRef(null);
 
     const syncScroll = (source: any, target: any) => {
         if (source.current && target.current) {
@@ -87,14 +87,6 @@ const Week = () => {
             setEventDate({ day: day, y: yPositon ? yPositon : 0 });
         }
     }
-
-
-
-    // const handleDoubleTap = (day: any, y: number) => {
-    //     setDialogOpen(true);
-    //     setEventDate({ day: dayjs(day), y: y || 0 });
-    // };
-
     const handleTouchEnd = (day: any, y: number) => {
         const now = Date.now();
         const DOUBLE_TAP_DELAY = 300;
@@ -104,6 +96,12 @@ const Week = () => {
         }
         setLastTap(now);
     };
+
+
+    const sensors = useSensors(
+        useSensor(PointerSensor),
+        useSensor(KeyboardSensor),
+    );
 
 
 
@@ -157,7 +155,7 @@ const Week = () => {
                         })}
                     </div>
                     <div className="h-[1440px] w-[calc(100%-70px)] lg:w-[calc(100%-120px)] overflow-x-scroll no-scrollbar" ref={ref1}>
-                        <motion.div className="w-full min-w-max grid grid-cols-7 h-full ">
+                        <div className="w-full min-w-max grid grid-cols-7 h-full" ref={parentRef}>
                             {month[week].map((weekDay: any, i: number) => {
                                 // const currentDay = getCurrentDay(dayjs(weekDay));
                                 const check = new Date(weekDay).getMonth() > new Date(dayjs().year(), monthNumber).getMonth() || new Date(weekDay).getMonth() < new Date(dayjs().year(), monthNumber).getMonth();
@@ -167,36 +165,67 @@ const Week = () => {
                                 );
 
                                 return (
-                                    <motion.div
-                                        className={cn("w-full min-w-[100px] h-full border-r", check && 'bg-zinc-100 pointer-events-none text-zinc-400')}
+
+
+
+                                    <DndContext
+                                        sensors={sensors}
+                                        collisionDetection={closestCorners}
                                         key={i}
 
                                     >
-                                        <motion.div
-                                            className="size-full relative"
-                                            ref={parentRef}
-                                            onDoubleClick={(e) => {
-                                                const y = e.clientY.toString();
-                                                handleDialogOpen(weekDay, parseInt(y));
-                                            }}
-                                            onTouchEnd={(e: any) => {
-                                                const y = e.changedTouches[0].clientY.toString()
 
-                                                handleTouchEnd(weekDay, parseInt(y));
-                                            }}
+                                        <WeekDayCol check={check} handleDialogOpen={handleDialogOpen} handleTouchEnd={handleTouchEnd} parentRef={parentRef} weekDay={weekDay} eventList={eventList} ref3={ref3} />
+                                        {/* <div
+                                            className={cn("w-full min-w-[100px] h-full border-r", check && 'bg-zinc-100 pointer-events-none text-zinc-400')}
                                         >
-                                            {filteredEvents.map((event, i) => {
-                                                return <DayEvent drag={'y'} parentRef={parentRef} top={event.top} title={event.title} description={event.description} color={event.color} dayConstraintsRef={parentRef} day={weekDay} key={i} />
-                                            })}
-                                        </motion.div>
-                                    </motion.div>
+                                            <div
+                                                className="size-full relative"
+                                                ref={parentRef}
+                                                onDoubleClick={(e) => {
+                                                    const y = e.clientY.toString();
+                                                    handleDialogOpen(weekDay, parseInt(y));
+                                                }}
+                                                onTouchEnd={(e: any) => {
+                                                    const y = e.changedTouches[0].clientY.toString()
+
+                                                    handleTouchEnd(weekDay, parseInt(y));
+                                                }}
+                                            >
+                                                {filteredEvents.map((event, i) => {
+                                                    return <DayEvent
+                                                        id={event.id}
+                                                        parentRef={parentRef}
+                                                        top={event.top}
+                                                        title={event.title}
+                                                        description={event.description}
+                                                        color={event.color}
+                                                        height={event.height} dayConstraintsRef={parentRef}
+                                                        day={weekDay}
+                                                        key={i}
+
+                                                    />
+
+
+                                                })}
+                                            </div>
+                                        </div> */}
+
+                                    </DndContext>
                                 )
                             })}
-                        </motion.div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <SchedulerDialog dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} day={eventDate.day} y={eventDate.y} eventList={eventList} setEventList={setEventList} />
+            <SchedulerDialog
+                dialogOpen={dialogOpen}
+                setDialogOpen={setDialogOpen}
+                day={eventDate.day}
+                y={eventDate.y}
+                eventList={eventList}
+                setEventList={setEventList}
+            />
 
         </div>
     )

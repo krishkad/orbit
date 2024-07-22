@@ -1,5 +1,5 @@
 import { navLinks } from '@/constant/constant';
-import { AlignRight, Tag } from 'lucide-react';
+import { AlignRight, Rotate3D, Tag } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 import { buttonVariants } from '../ui/button';
@@ -12,8 +12,8 @@ const Navbar = () => {
                 <div className="w-full h-16 sm:h-20 flex items-center justify-between">
                     <div className="flex items-center justify-center gap-12">
                         <h1 className="flex gap-2 items-center justify-center font-bold text-xl">
-                            <Tag className='text-white fill-primary' />
-                            Top Leads
+                            <Rotate3D className='text-primary' />
+                            Orbit
                         </h1>
                         <div className="hidden sm:flex items-center justify-center gap-5">
                             {navLinks.map((item, i) => {

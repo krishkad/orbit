@@ -115,7 +115,7 @@ export function roundToNearestSixty(num: number): number {
   } else {
     return num - remainder;
   }
-}
+};
 
 export function getCurrentWeekInMonth(month: any) {
   let weekIdx = 0
@@ -127,4 +127,25 @@ export function getCurrentWeekInMonth(month: any) {
     })
   })
   return weekIdx;
-}
+};
+
+export const generateUID = (): number => {
+  // Use the crypto API to generate a random array of bytes and convert it to a string
+  const now = Date.now(); // Current timestamp in milliseconds
+  const randomPart = Math.floor(Math.random() * 1000000000); // Random number part
+  return Number(`${now}${randomPart}`);
+};
+
+
+export function roundToNearestDay(num: number, EventRect: any): number {
+  const width = EventRect.right - EventRect.left
+  const remainder = num % width;
+  if (remainder === 0) {
+    return num;
+  }
+  if (remainder >= 30) {
+    return num + (width - remainder);
+  } else {
+    return num - remainder;
+  }
+};

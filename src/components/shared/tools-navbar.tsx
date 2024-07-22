@@ -7,6 +7,7 @@ import {
     CircleUser,
     FolderKanban,
     Menu,
+    Rotate3D,
     Search,
     Settings,
     Tag,
@@ -55,8 +56,8 @@ const ToolsNavbar = () => {
                             className="flex items-center gap-2 text-lg font-semibold"
                         >
                             <h1 className="flex gap-2 items-center justify-center font-bold text-md">
-                                <Tag className='text-white fill-primary' />
-                                Top Leads
+                                <Rotate3D className='text-primary' />
+                                Orbit
                             </h1>
                         </Link>
                     </SheetTitle>
