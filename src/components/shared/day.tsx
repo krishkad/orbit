@@ -12,7 +12,7 @@ import {
     ResizablePanelGroup,
 } from "@/components/ui/resizable"
 import { sampleEvents } from '@/constant/constant';
-import { closestCorners, DndContext, DragEndEvent, DragMoveEvent, DragStartEvent, KeyboardSensor, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
+import { closestCorners, DndContext, DragEndEvent, DragMoveEvent, DragStartEvent, KeyboardSensor, MouseSensor, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
 
 
 const Day = () => {
@@ -47,12 +47,9 @@ const Day = () => {
     };
 
     const sensors = useSensors(
-        useSensor(PointerSensor, {
-            activationConstraint: {
-                delay: 250,
-                tolerance: 5,
-            },
-        })
+        useSensor(MouseSensor),
+        useSensor(TouchSensor),
+        useSensor(KeyboardSensor),
     );
 
     return (
