@@ -35,7 +35,6 @@
     "email-validator": "^2.0.4",
     "framer-motion": "^11.2.13",
     "fs": "^0.0.1-security",
-    "interactjs": "^1.10.27",
     "lucide-react": "^0.383.0",
     "mongoose": "^8.4.3",
     "next": "14.2.3",
