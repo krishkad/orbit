@@ -13,7 +13,7 @@ import {
     ResizablePanelGroup,
 } from "@/components/ui/resizable"
 import SchedulerDialog from './scheduler-dialog';
-import { closestCorners, DndContext, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
+import { closestCorners, DndContext, KeyboardSensor, MouseSensor, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core'
 import WeekDayCol from './week-day-col';
 
 
@@ -99,7 +99,8 @@ const Week = () => {
 
 
     const sensors = useSensors(
-        useSensor(PointerSensor),
+        useSensor(MouseSensor),
+        useSensor(TouchSensor),
         useSensor(KeyboardSensor),
     );
 

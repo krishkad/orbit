@@ -123,36 +123,34 @@ const DayEvent = ({
 
     return (
         <>
-            <RightClick>
-                <div
-                    ref={el => {
-                        setNodeRef(el);
-                        ref.current = el;
-                    }}
-                    {...attributes}
-                    {...listeners}
-                    style={{
-                        transform: eventType === 'week' ? (!xDrag ? `translateY(${(yAxis + (transform ? roundToNearestFive(transform?.y) : 0))}px)` : `translate3d(${xAxis + (transform ? roundToNearestDay(transform.x, ref3.current.getBoundingClientRect()) : 0)}px, ${yAxis + (transform ? roundToNearestFive(transform?.y) : 0)}px, 0)`) : eventType === 'day' ? `translateY(${(yAxis + (transform ? roundToNearestFive(transform?.y) : 0))}px)` : '',
-                        height: height
+            <div
+                ref={el => {
+                    setNodeRef(el);
+                    ref.current = el;
+                }}
+                {...attributes}
+                {...listeners}
+                style={{
+                    transform: eventType === 'week' ? (!xDrag ? `translateY(${(yAxis + (transform ? roundToNearestFive(transform?.y) : 0))}px)` : `translate3d(${xAxis + (transform ? roundToNearestDay(transform.x, ref3.current.getBoundingClientRect()) : 0)}px, ${yAxis + (transform ? roundToNearestFive(transform?.y) : 0)}px, 0)`) : eventType === 'day' ? `translateY(${(yAxis + (transform ? roundToNearestFive(transform?.y) : 0))}px)` : '',
+                    height: height
 
-                    }}
-                    className={cn(`w-full absolute inset-x-0 p-1 cursor-pointer `, color ? color : 'bg-primary', onDragStart && 'z-10')}>
+                }}
+                className={cn(`w-full absolute inset-x-0 p-1 cursor-pointer `, color ? color : 'bg-primary', onDragStart && 'z-10')}>
 
 
-                    <div className="w-full h-full relative">
-                        <div className="w-full">
-                            {onDragStart ? <>
-                                <p className="font-medium text-white">{eventInfo.startTime}</p>
-                                <p className="font-medium text-white">{eventInfo.endTime}</p>
-                            </> : <>
-                                <p className="font-semibold text-sm text-white">{title}</p>
-                                <p className="font-medium text-white text-xs">{description}</p>
-                            </>}
-                        </div>
-
+                <div className="w-full h-full relative">
+                    <div className="w-full">
+                        {onDragStart ? <>
+                            <p className="font-medium text-white">{eventInfo.startTime}</p>
+                            <p className="font-medium text-white">{eventInfo.endTime}</p>
+                        </> : <>
+                            <p className="font-semibold text-sm text-white">{title}</p>
+                            <p className="font-medium text-white text-xs">{description}</p>
+                        </>}
                     </div>
+
                 </div>
-            </RightClick>
+            </div>
         </>
     )
 }
