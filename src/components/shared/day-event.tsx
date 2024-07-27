@@ -48,18 +48,19 @@ const DayEvent = ({
         endTime: '',
         day: day
     });
+
     useEffect(() => {
-        // Update eventInfo whenever top, height, or day props change
-        setEventInfo(prevEventInfo => ({
-            ...prevEventInfo,
+        setEventInfo({
             id,
-            top,
             height,
-            day,
-            startTime: getTimeInHours(top)
-        }));
+            top,
+            bottom: 0,
+            startTime: getTimeInHours(top),
+            endTime: '',
+            day
+        });
         setYAxis(top);
-    }, [top, height, day, id]);
+    }, [id, height, top]);
 
     const [yAxis, setYAxis] = useState(eventInfo.top);
     const [xAxis, setXAxis] = useState(0);
@@ -73,11 +74,8 @@ const DayEvent = ({
 
 
     useEffect(() => {
-        console.log({ event: { ...eventInfo, title, proptop: top, propheight: height } });
-        console.log({ id });
-        console.log({ eventID: eventInfo.id });
-        console.log({ eventOnly: eventInfo })
-    }, [top])
+        console.log({ day, title })
+    }, [day])
 
 
 
