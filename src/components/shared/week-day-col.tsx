@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import React from 'react'
+import React, { useEffect } from 'react'
 import DayEvent from './day-event';
 import { Dayjs } from 'dayjs';
 import { EventProps } from '@/types/index-types';
@@ -23,9 +23,6 @@ const WeekDayCol = ({
     ref3: any
 }) => {
 
-    const filteredEvents = eventList.filter((event) => event.day.format('YYYY MM DD') === weekDay.format('YYYY MM DD')
-    );
-
     const { setNodeRef } = useDroppable({
         id: weekDay.format('YYYY-MM-DD'),
         data: {
@@ -33,10 +30,13 @@ const WeekDayCol = ({
         }
     });
 
+    const filteredEvents = eventList.filter((event) =>
+        event.day.format('YYYY MM DD') === weekDay.format('YYYY MM DD'));
+
     function setRefs(node: any) {
         setNodeRef(node);
         ref3.current = node;
-    }
+    };
 
 
     return (
@@ -72,8 +72,6 @@ const WeekDayCol = ({
                         key={i}
 
                     />
-
-
                 })}
             </div>
         </div>

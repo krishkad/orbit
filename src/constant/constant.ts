@@ -427,7 +427,7 @@ export const sampleWeekEvents = [
         top: 120,
         color: 'bg-[#ff595e]',
         height: 60,
-        day: dayjs(new Date(2024, 6, new Date().getDate() + 1))
+        day: dayjs(new Date(2024, 6, new Date().getDate() + 3))
     },
     {
         id: generateUID(),

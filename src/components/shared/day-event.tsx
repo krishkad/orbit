@@ -1,6 +1,6 @@
 "use client";
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { calculateStartAndEndTimes, cn, getTimeInHours, roundToNearestDay, roundToNearestFive } from '@/lib/utils';
+import { calculateStartAndEndTimes, cn, generateUID, getTimeInHours, roundToNearestDay, roundToNearestFive } from '@/lib/utils';
 import dayjs from 'dayjs';
 import {
     ResizableHandle,
@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/resizable";
 import { useDndMonitor, useDraggable } from '@dnd-kit/core';
 import { RightClick } from './right-click';
+import { ActiveDraggableContext } from '@dnd-kit/core/dist/components/DndContext';
 
 
 const DayEvent = ({
@@ -47,38 +48,54 @@ const DayEvent = ({
         endTime: '',
         day: day
     });
-    const [yAxis, setYAxis] = useState(top);
+    useEffect(() => {
+        // Update eventInfo whenever top, height, or day props change
+        setEventInfo(prevEventInfo => ({
+            ...prevEventInfo,
+            id,
+            top,
+            height,
+            day,
+            startTime: getTimeInHours(top)
+        }));
+        setYAxis(top);
+    }, [top, height, day, id]);
+
+    const [yAxis, setYAxis] = useState(eventInfo.top);
     const [xAxis, setXAxis] = useState(0);
     const [onDragStart, setOnDragStart] = useState(false);
-    const [xDrag, setXDrag] = useState(false);
     const ref: any = useRef();
     const { attributes, listeners, transform, setNodeRef } = useDraggable({
-        id: eventInfo.id,
+        id,
         data: { ...eventInfo, setEventInfo }
     });
 
 
 
+    useEffect(() => {
+        console.log({ event: { ...eventInfo, title, proptop: top, propheight: height } });
+        console.log({ id });
+        console.log({ eventID: eventInfo.id });
+        console.log({ eventOnly: eventInfo })
+    }, [top])
+
 
 
     useDndMonitor({
         onDragStart(event) {
-            if (event.active.id === eventInfo.id) {
+            if (event.active.id === id) {
                 setOnDragStart(true);
             }
 
         },
         onDragMove(event) {
-            if (event.active.id === eventInfo.id) {
+            if (event.active.id === id && event?.active?.data?.current?.day.format("YYYY-MM-DD") === event?.over?.id) {
+
+                console.log('day-event-drag-move')
+                console.log({ active: event.active.id })
+                console.log({ eventInfo: title })
                 const ParentRect = parentRef.current.getBoundingClientRect();
                 const EventRect = ref.current.getBoundingClientRect();
-                if (Math.abs(event.delta.x) > ((EventRect.right - EventRect.left) / 2)) {
-                    if (!xDrag) {
-                        console.log('x drag runnng...')
-                        setXDrag(true);
-                    }
-
-                }
                 const yTop = (EventRect.top - ParentRect.top);
                 const roundToFive = roundToNearestFive(yTop);
                 const { start, end } = calculateStartAndEndTimes(roundToFive, height);
@@ -88,14 +105,13 @@ const DayEvent = ({
                     endTime: end,
                     top: roundToFive
                 }));
+
+
             }
         },
-        onDragOver(event) {
-
-        },
         onDragEnd(event) {
-            if (event.active.id === eventInfo.id) {
-                setXDrag(false);
+            if (event.active.id === id && event?.active?.data?.current?.day.format("YYYY-MM-DD") === event?.over?.id) {
+                console.log('day-event-drag-end')
                 const ParentRect = parentRef.current.getBoundingClientRect();
                 const EventRect = ref.current.getBoundingClientRect();
                 const yTop = (EventRect.top - ParentRect.top);
@@ -108,9 +124,9 @@ const DayEvent = ({
                     top: roundToFive
                 }))
                 setYAxis(roundToFive);
-                setOnDragStart(false)
-
             }
+            setOnDragStart(false)
+
         },
         onDragCancel(event) { },
     });
@@ -131,7 +147,7 @@ const DayEvent = ({
                 {...attributes}
                 {...listeners}
                 style={{
-                    transform: eventType === 'week' ? (!xDrag ? `translateY(${(yAxis + (transform ? roundToNearestFive(transform?.y) : 0))}px)` : `translate3d(${xAxis + (transform ? roundToNearestDay(transform.x, ref3.current.getBoundingClientRect()) : 0)}px, ${yAxis + (transform ? roundToNearestFive(transform?.y) : 0)}px, 0)`) : eventType === 'day' ? `translateY(${(yAxis + (transform ? roundToNearestFive(transform?.y) : 0))}px)` : '',
+                    transform: eventType === 'week' ? (`translate(${xAxis + (transform ? roundToNearestDay(transform.x, ref3.current.getBoundingClientRect()) : 0)}px, ${yAxis + (transform ? roundToNearestFive(transform?.y) : 0)}px)`) : eventType === 'day' ? `translateY(${(yAxis + (transform ? roundToNearestFive(transform?.y) : 0))}px)` : '',
                     height: height
 
                 }}

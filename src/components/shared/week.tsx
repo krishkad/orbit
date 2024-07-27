@@ -1,11 +1,10 @@
 "use client";
-import { sampleEvents, sampleWeekEvents } from '@/constant/constant';
-import { calculateStartAndEndTimes, cn, deserializeDayHours, deserializeMonth, excludeDisabledWeek, getCurrentDay, getCurrentWeekInMonth, getDayHours } from '@/lib/utils';
+import { sampleWeekEvents } from '@/constant/constant';
+import { cn, deserializeDayHours, deserializeMonth, excludeDisabledWeek, getCurrentDay,getCurrentWeekInMonth, getDayHours } from '@/lib/utils';
 import { changeWeekNumber } from '@/redux/features/calendar-slice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/redux-hooks';
 import dayjs from 'dayjs';
-import React, { Fragment, useEffect, useRef, useState } from 'react'
-import DayEvent from './day-event';
+import React, { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
     ResizableHandle,
@@ -13,7 +12,7 @@ import {
     ResizablePanelGroup,
 } from "@/components/ui/resizable"
 import SchedulerDialog from './scheduler-dialog';
-import { closestCorners, DndContext, KeyboardSensor, MouseSensor, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core'
+import { closestCorners, DndContext, DragEndEvent, KeyboardSensor, MouseSensor, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core'
 import WeekDayCol from './week-day-col';
 
 
@@ -75,8 +74,7 @@ const Week = () => {
     useEffect(() => {
         // dispatch(changeWeek(month[week]));
         dispatch(changeWeekNumber(weekIdx));
-        console.log({ eventList })
-    }, [eventList])
+    }, [])
 
 
     const handleDialogOpen = (day: any, y: number) => {
@@ -104,7 +102,18 @@ const Week = () => {
         useSensor(KeyboardSensor),
     );
 
+    function handleOnDragEnd(event: DragEndEvent) {
+        const { active, over } = event;
+        if (active && over && active?.data?.current?.day.format('YYYY-MM-DD') !== over.id) {
+            console.log('week-drag-end');
+            const activeEvent = eventList.filter((event) => event.id === active.id)[0];
+            const tempList = eventList.filter((event) => event.id !== active.id);
+            const updatedEvent = { ...activeEvent, day: dayjs(over.id) };
+            const newList = tempList.concat(updatedEvent);
 
+            setEventList(newList);
+        }
+    }
 
     return (
         <div className="w-full h-full">
@@ -127,7 +136,6 @@ const Week = () => {
                                 <div
                                     className={cn("w-full min-w-[100px] h-full border-r border-y", check && 'bg-zinc-100 pointer-events-none text-zinc-400')}
                                     key={i}
-                                    // ref={weekDayRef}
                                     aria-disabled={check}
 
                                 >
@@ -157,64 +165,35 @@ const Week = () => {
                     </div>
                     <div className="h-[1440px] w-[calc(100%-70px)] lg:w-[calc(100%-120px)] overflow-x-scroll no-scrollbar" ref={ref1}>
                         <div className="w-full min-w-max grid grid-cols-7 h-full" ref={parentRef}>
-                            {month[week].map((weekDay: any, i: number) => {
-                                // const currentDay = getCurrentDay(dayjs(weekDay));
-                                const check = new Date(weekDay).getMonth() > new Date(dayjs().year(), monthNumber).getMonth() || new Date(weekDay).getMonth() < new Date(dayjs().year(), monthNumber).getMonth();
+                            <DndContext
+                                sensors={sensors}
+                                collisionDetection={closestCorners}
+                                onDragEnd={handleOnDragEnd}
+                            >
+                                {month[week].map((weekDay: any, i: number) => {
+
+                                    const check = new Date(weekDay).getMonth() > new Date(dayjs().year(), monthNumber).getMonth() || new Date(weekDay).getMonth() < new Date(dayjs().year(), monthNumber).getMonth();
+
+                                    const filteredEvents = eventList.filter((event) => event.day.format('YYYY MM DD') === weekDay.format('YYYY MM DD')
+                                    );
+                                    
+
+                                    return (
+                                        <WeekDayCol
+                                            check={check}
+                                            handleDialogOpen={handleDialogOpen}
+                                            handleTouchEnd={handleTouchEnd}
+                                            parentRef={parentRef}
+                                            weekDay={weekDay}
+                                            eventList={eventList}
+                                            ref3={ref3}
+                                            key={i}
+                                        />
 
 
-                                const filteredEvents = eventList.filter((event) => event.day.format('YYYY MM DD') === weekDay.format('YYYY MM DD')
-                                );
-
-                                return (
-
-
-
-                                    <DndContext
-                                        sensors={sensors}
-                                        collisionDetection={closestCorners}
-                                        key={i}
-
-                                    >
-
-                                        <WeekDayCol check={check} handleDialogOpen={handleDialogOpen} handleTouchEnd={handleTouchEnd} parentRef={parentRef} weekDay={weekDay} eventList={eventList} ref3={ref3} />
-                                        {/* <div
-                                            className={cn("w-full min-w-[100px] h-full border-r", check && 'bg-zinc-100 pointer-events-none text-zinc-400')}
-                                        >
-                                            <div
-                                                className="size-full relative"
-                                                ref={parentRef}
-                                                onDoubleClick={(e) => {
-                                                    const y = e.clientY.toString();
-                                                    handleDialogOpen(weekDay, parseInt(y));
-                                                }}
-                                                onTouchEnd={(e: any) => {
-                                                    const y = e.changedTouches[0].clientY.toString()
-
-                                                    handleTouchEnd(weekDay, parseInt(y));
-                                                }}
-                                            >
-                                                {filteredEvents.map((event, i) => {
-                                                    return <DayEvent
-                                                        id={event.id}
-                                                        parentRef={parentRef}
-                                                        top={event.top}
-                                                        title={event.title}
-                                                        description={event.description}
-                                                        color={event.color}
-                                                        height={event.height} dayConstraintsRef={parentRef}
-                                                        day={weekDay}
-                                                        key={i}
-
-                                                    />
-
-
-                                                })}
-                                            </div>
-                                        </div> */}
-
-                                    </DndContext>
-                                )
-                            })}
+                                    )
+                                })}
+                            </DndContext>
                         </div>
                     </div>
                 </div>

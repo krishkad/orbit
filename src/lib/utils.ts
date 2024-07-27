@@ -2,6 +2,7 @@ import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
+import { randomBytes } from "crypto";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -133,8 +134,24 @@ export const generateUID = (): number => {
   // Use the crypto API to generate a random array of bytes and convert it to a string
   const now = Date.now(); // Current timestamp in milliseconds
   const randomPart = Math.floor(Math.random() * 1000000000); // Random number part
-  return Number(`${now}${randomPart}`);
+  const randomPart2 = parseInt(randomBytes(4).toString('hex'), 16);
+  return Number(`${now}${randomPart}${randomPart2}`);
 };
+
+// let counter = 0;
+
+// export const generateUID = (): number => {
+//   // Increment the counter for each call
+//   counter++;
+
+//   // Generate a random part using crypto API
+//   const randomPart = randomBytes(4).toString('hex'); // 4 bytes = 32 bits of randomness
+
+//   // Combine the counter and the random part to form the UID
+//   const uid = `${counter}${randomPart}`;
+
+//   return Number(uid);
+// };
 
 
 export function roundToNearestDay(num: number, EventRect: any): number {
