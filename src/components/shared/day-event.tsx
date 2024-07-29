@@ -60,6 +60,7 @@ const DayEvent = ({
             day
         });
         setYAxis(top);
+        console.log({ event: { top, eventTop: eventInfo.top, title } })
     }, [id, height, top]);
 
     const [yAxis, setYAxis] = useState(eventInfo.top);
@@ -81,7 +82,7 @@ const DayEvent = ({
 
         },
         onDragMove(event) {
-            if (event.active.id === id ) {
+            if (event.active.id === id) {
 
                 const ParentRect = parentRef.current.getBoundingClientRect();
                 const EventRect = ref.current.getBoundingClientRect();
@@ -99,7 +100,8 @@ const DayEvent = ({
             }
         },
         onDragEnd(event) {
-            if (event.active.id === id ) {
+            if (event.active.id === id) {
+                console.log('event-day-drag-end');
                 const ParentRect = parentRef.current.getBoundingClientRect();
                 const EventRect = ref.current.getBoundingClientRect();
                 const yTop = (EventRect.top - ParentRect.top);
@@ -127,34 +129,36 @@ const DayEvent = ({
 
     return (
         <>
-            <div
-                ref={el => {
-                    setNodeRef(el);
-                    ref.current = el;
-                }}
-                {...attributes}
-                {...listeners}
-                style={{
-                    transform: eventType === 'week' ? (`translate(${xAxis + (transform ? roundToNearestDay(transform.x, ref3.current.getBoundingClientRect()) : 0)}px, ${yAxis + (transform ? roundToNearestFive(transform?.y) : 0)}px)`) : eventType === 'day' ? `translateY(${(yAxis + (transform ? roundToNearestFive(transform?.y) : 0))}px)` : '',
-                    height: height
+            <RightClick>
+                <div
+                    ref={el => {
+                        setNodeRef(el);
+                        ref.current = el;
+                    }}
+                    {...attributes}
+                    {...listeners}
+                    style={{
+                        transform: eventType === 'week' ? (`translate(${xAxis + (transform ? roundToNearestDay(transform.x, ref3.current.getBoundingClientRect()) : 0)}px, ${yAxis + (transform ? roundToNearestFive(transform?.y) : 0)}px)`) : eventType === 'day' ? `translateY(${(yAxis + (transform ? roundToNearestFive(transform?.y) : 0))}px)` : '',
+                        height: height
 
-                }}
-                className={cn(`w-full absolute inset-x-0 p-1 cursor-pointer `, color ? color : 'bg-primary', onDragStart && 'z-10')}>
+                    }}
+                    className={cn(`w-full absolute inset-x-0 p-1 cursor-pointer `, color ? color : 'bg-primary', onDragStart && 'z-10')}>
 
 
-                <div className="w-full h-full relative">
-                    <div className="w-full">
-                        {onDragStart ? <>
-                            <p className="font-medium text-white">{eventInfo.startTime}</p>
-                            <p className="font-medium text-white">{eventInfo.endTime}</p>
-                        </> : <>
-                            <p className="font-semibold text-sm text-white">{title}</p>
-                            <p className="font-medium text-white text-xs">{description}</p>
-                        </>}
+                    <div className="w-full h-full relative">
+                        <div className="w-full">
+                            {onDragStart ? <>
+                                <p className="font-medium text-white">{eventInfo.startTime}</p>
+                                <p className="font-medium text-white">{eventInfo.endTime}</p>
+                            </> : <>
+                                <p className="font-semibold text-sm text-white">{title}</p>
+                                <p className="font-medium text-white text-xs">{description}</p>
+                            </>}
+                        </div>
+
                     </div>
-
                 </div>
-            </div>
+            </RightClick>
         </>
     )
 }

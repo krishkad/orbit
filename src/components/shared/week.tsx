@@ -1,6 +1,6 @@
 "use client";
 import { sampleWeekEvents } from '@/constant/constant';
-import { cn, deserializeDayHours, deserializeMonth, excludeDisabledWeek, getCurrentDay,getCurrentWeekInMonth, getDayHours } from '@/lib/utils';
+import { cn, deserializeDayHours, deserializeMonth, excludeDisabledWeek, getCurrentDay, getCurrentWeekInMonth, getDayHours, roundToNearestFive } from '@/lib/utils';
 import { changeWeekNumber } from '@/redux/features/calendar-slice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/redux-hooks';
 import dayjs from 'dayjs';
@@ -107,9 +107,9 @@ const Week = () => {
         if (active && over && active?.data?.current?.day.format('YYYY-MM-DD') !== over.id) {
             const activeEvent = eventList.filter((event) => event.id === active.id)[0];
             const tempList = eventList.filter((event) => event.id !== active.id);
-            const updatedEvent = { ...activeEvent, day: dayjs(over.id) };
+            const updatedEvent = { ...activeEvent, day: dayjs(over.id), top: activeEvent.top + roundToNearestFive(event.delta.y) };
             const newList = tempList.concat(updatedEvent);
-
+            console.log({ y: event.delta.y });
             setEventList(newList);
         }
     }
@@ -175,7 +175,7 @@ const Week = () => {
 
                                     const filteredEvents = eventList.filter((event) => event.day.format('YYYY MM DD') === weekDay.format('YYYY MM DD')
                                     );
-                                    
+
 
                                     return (
                                         <WeekDayCol

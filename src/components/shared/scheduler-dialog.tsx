@@ -19,6 +19,7 @@ import { Textarea } from '../ui/textarea';
 import { sampleEvents } from '@/constant/constant';
 import { Check, CircleCheck } from 'lucide-react';
 
+
 const SchedulerDialog = ({
     dialogOpen,
     setDialogOpen,
@@ -63,6 +64,34 @@ const SchedulerDialog = ({
     };
 
 
+    const timestamps = [
+        {
+            title: '1/2 hrs',
+            value: 30
+        },
+        {
+            title: '1 hrs',
+            value: 60
+        },
+        {
+            title: '1.5 hrs',
+            value: 90
+        },
+        {
+            title: '2 hrs',
+            value: 120
+        },
+        {
+            title: '2.5 hrs',
+            value: 150
+        },
+        {
+            title: '3 hrs',
+            value: 180
+        },
+    ]
+
+
     return (
         <Dialog open={dialogOpen} onOpenChange={() => setDialogOpen(false)}>
             <DialogContent className="w-[90%] sm:max-w-[425px]">
@@ -88,6 +117,23 @@ const SchedulerDialog = ({
                         <div className="w-full">
                             <Label htmlFor='description'>Description</Label>
                             <Textarea id='description' name='description' placeholder='Enter description' className=' focus-visible:ring-0 focus-visible:ring-offset-0 resize-none' onChange={handleOnChange} />
+                        </div>
+                        <div className="w-full">
+                            <Label htmlFor='hours'>Hours</Label>
+
+                            <div className="w-full grid grid-cols-4 gap-1">
+                                {timestamps.map((button, i) => {
+                                    return <Button
+                                        className={cn(eventInfo.height === button.value && 'bg-primary text-white hover:bg-primary hover:text-white')}
+                                        size={'sm'}
+                                        variant={'outline'}
+                                        onClick={() => setEventInfo({ ...eventInfo, height: button.value })}
+                                        key={i}
+                                    >
+                                        {button.title}
+                                    </Button>
+                                })}
+                            </div>
                         </div>
                     </div>
                     <div className="w-full space-y-2">
