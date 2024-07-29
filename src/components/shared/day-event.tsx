@@ -73,12 +73,6 @@ const DayEvent = ({
 
 
 
-    useEffect(() => {
-        console.log({ day, title })
-    }, [day])
-
-
-
     useDndMonitor({
         onDragStart(event) {
             if (event.active.id === id) {
@@ -87,11 +81,8 @@ const DayEvent = ({
 
         },
         onDragMove(event) {
-            if (event.active.id === id && event?.active?.data?.current?.day.format("YYYY-MM-DD") === event?.over?.id) {
+            if (event.active.id === id ) {
 
-                console.log('day-event-drag-move')
-                console.log({ active: event.active.id })
-                console.log({ eventInfo: title })
                 const ParentRect = parentRef.current.getBoundingClientRect();
                 const EventRect = ref.current.getBoundingClientRect();
                 const yTop = (EventRect.top - ParentRect.top);
@@ -108,8 +99,7 @@ const DayEvent = ({
             }
         },
         onDragEnd(event) {
-            if (event.active.id === id && event?.active?.data?.current?.day.format("YYYY-MM-DD") === event?.over?.id) {
-                console.log('day-event-drag-end')
+            if (event.active.id === id ) {
                 const ParentRect = parentRef.current.getBoundingClientRect();
                 const EventRect = ref.current.getBoundingClientRect();
                 const yTop = (EventRect.top - ParentRect.top);

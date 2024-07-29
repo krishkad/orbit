@@ -105,7 +105,6 @@ const Week = () => {
     function handleOnDragEnd(event: DragEndEvent) {
         const { active, over } = event;
         if (active && over && active?.data?.current?.day.format('YYYY-MM-DD') !== over.id) {
-            console.log('week-drag-end');
             const activeEvent = eventList.filter((event) => event.id === active.id)[0];
             const tempList = eventList.filter((event) => event.id !== active.id);
             const updatedEvent = { ...activeEvent, day: dayjs(over.id) };
