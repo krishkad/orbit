@@ -60,7 +60,6 @@ const DayEvent = ({
             day
         });
         setYAxis(top);
-        console.log({ event: { top, eventTop: eventInfo.top, title } })
     }, [id, height, top]);
 
     const [yAxis, setYAxis] = useState(eventInfo.top);
@@ -101,7 +100,6 @@ const DayEvent = ({
         },
         onDragEnd(event) {
             if (event.active.id === id) {
-                console.log('event-day-drag-end');
                 const ParentRect = parentRef.current.getBoundingClientRect();
                 const EventRect = ref.current.getBoundingClientRect();
                 const yTop = (EventRect.top - ParentRect.top);
@@ -112,10 +110,10 @@ const DayEvent = ({
                     startTime: start,
                     endTime: end,
                     top: roundToFive
-                }))
+                }));
                 setYAxis(roundToFive);
             }
-            setOnDragStart(false)
+            setOnDragStart(false);
 
         },
         onDragCancel(event) { },

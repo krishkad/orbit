@@ -317,7 +317,7 @@ export const sampleWeekEvents = [
         title: "Event 2",
         description: "Event Description",
         top: 540,
-        color: 'bg-[#feb94a]',
+        color: 'bg-[#FED049]',
         height: 60,
         day: dayjs(new Date(2024, 6, new Date().getDate()))
     },
@@ -326,16 +326,7 @@ export const sampleWeekEvents = [
         title: "Event 3",
         description: "Event Description",
         top: 300,
-        color: 'bg-[#0d9937]',
-        height: 60,
-        day: dayjs(new Date(2024, 6, new Date().getDate()))
-    },
-    {
-        id: generateUID(),
-        title: "Event 4",
-        description: "Event Description",
-        top: 120,
-        color: 'bg-[#ff595e]',
+        color: 'bg-[#5BB318]',
         height: 60,
         day: dayjs(new Date(2024, 6, new Date().getDate()))
     },
@@ -362,7 +353,7 @@ export const sampleWeekEvents = [
         title: "Event 2",
         description: "Event Description",
         top: 540,
-        color: 'bg-[#feb94a]',
+        color: 'bg-[#FED049]',
         height: 240,
         day: dayjs(new Date(2024, 6, new Date().getDate() - 1))
     },
@@ -371,16 +362,7 @@ export const sampleWeekEvents = [
         title: "Event 3",
         description: "Event Description",
         top: 300,
-        color: 'bg-[#0d9937]',
-        height: 60,
-        day: dayjs(new Date(2024, 6, new Date().getDate() - 1))
-    },
-    {
-        id: generateUID(),
-        title: "Event 4",
-        description: "Event Description",
-        top: 120,
-        color: 'bg-[#ff595e]',
+        color: 'bg-[#5BB318]',
         height: 60,
         day: dayjs(new Date(2024, 6, new Date().getDate() - 1))
     },
@@ -407,7 +389,7 @@ export const sampleWeekEvents = [
         title: "Event 2",
         description: "Event Description",
         top: 540,
-        color: 'bg-[#feb94a]',
+        color: 'bg-[#FED049]',
         height: 60,
         day: dayjs(new Date(2024, 6, new Date().getDate() + 1))
     },
@@ -416,18 +398,9 @@ export const sampleWeekEvents = [
         title: "Event 3",
         description: "Event Description",
         top: 300,
-        color: 'bg-[#0d9937]',
+        color: 'bg-[#5BB318]',
         height: 60,
         day: dayjs(new Date(2024, 6, new Date().getDate() + 1))
-    },
-    {
-        id: generateUID(),
-        title: "Event 4",
-        description: "Event Description",
-        top: 120,
-        color: 'bg-[#ff595e]',
-        height: 60,
-        day: dayjs(new Date(2024, 6, new Date().getDate() + 3))
     },
     {
         id: generateUID(),
@@ -458,7 +431,7 @@ export const sampleEvents = [
         description: "Event Description",
         top: 540,
         height: 60,
-        color: 'bg-[#feb94a]'
+        color: 'bg-[#FED049]'
     },
     {
         id: generateUID(),
@@ -466,15 +439,7 @@ export const sampleEvents = [
         description: "Event Description",
         top: 300,
         height: 60,
-        color: 'bg-[#0d9937]'
-    },
-    {
-        id: generateUID(),
-        title: "Event 4",
-        description: "Event Description",
-        top: 120,
-        height: 60,
-        color: 'bg-[#ff595e]'
+        color: 'bg-[#5BB318]'
     },
     {
         id: generateUID(),

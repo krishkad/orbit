@@ -109,7 +109,6 @@ const Week = () => {
             const tempList = eventList.filter((event) => event.id !== active.id);
             const updatedEvent = { ...activeEvent, day: dayjs(over.id), top: activeEvent.top + roundToNearestFive(event.delta.y) };
             const newList = tempList.concat(updatedEvent);
-            console.log({ y: event.delta.y });
             setEventList(newList);
         }
     }
@@ -210,4 +209,4 @@ const Week = () => {
     )
 }
 
-export default Week
+export default Week;
