@@ -40,8 +40,8 @@ const LeadTable = () => {
 
     return (
         <div className='w-full pb-10'>
-            <div className="h-16 w-full flex justify-between items-center gap-2">
-                <div className="flex gap-2 items-center justify-center">
+            <div className="h-16 w-full space-y-2">
+                <div className="flex gap-2">
                     <Input name='url' className='focus-visible:ring-0 focus-visible:ring-offset-0 min-w-72 max-w-80' onChange={handleSearch} placeholder='Google maps url..' />
                     <Button onClick={handleScrape} disabled={searchBtn} className='flex items-center gap-2' >{searchBtn ? <><Loader className='w-4 h-4 animate-spin' /> Searching... </> : "Search"} </Button>
                 </div>

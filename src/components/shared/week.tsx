@@ -123,7 +123,7 @@ const Week = () => {
                         </p>
                     </div>
                 </div>
-                <div className="w-[calc(100%-70px)] lg:w-[calc(100%-120px)] overflow-x-scroll no-scrollbar" ref={ref2} >
+                <div className="w-[calc(100%-70px)] lg:w-[calc(100%-120px)] overflow-x-scroll no-scrollbar" ref={ref2}>
                     <div className="w-full min-w-max grid grid-cols-7 h-[60px] sticky top-0 bg-white z-20">
 
                         {month[week].map((weekDay: any, i: number) => {

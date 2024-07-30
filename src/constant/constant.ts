@@ -317,7 +317,7 @@ export const sampleWeekEvents = [
         title: "Event 2",
         description: "Event Description",
         top: 540,
-        color: 'bg-[#FED049]',
+        color: 'bg-[#FFA823]',
         height: 60,
         day: dayjs(new Date(2024, 6, new Date().getDate()))
     },
@@ -353,7 +353,7 @@ export const sampleWeekEvents = [
         title: "Event 2",
         description: "Event Description",
         top: 540,
-        color: 'bg-[#FED049]',
+        color: 'bg-[#FFA823]',
         height: 240,
         day: dayjs(new Date(2024, 6, new Date().getDate() - 1))
     },
@@ -389,7 +389,7 @@ export const sampleWeekEvents = [
         title: "Event 2",
         description: "Event Description",
         top: 540,
-        color: 'bg-[#FED049]',
+        color: 'bg-[#FFA823]',
         height: 60,
         day: dayjs(new Date(2024, 6, new Date().getDate() + 1))
     },
@@ -431,7 +431,7 @@ export const sampleEvents = [
         description: "Event Description",
         top: 540,
         height: 60,
-        color: 'bg-[#FED049]'
+        color: 'bg-[#FFA823]'
     },
     {
         id: generateUID(),
