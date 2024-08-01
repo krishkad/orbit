@@ -35,7 +35,7 @@ const Month = () => {
 
 
     return (
-        <div className={cn('w-full grid grid-cols-7 sm:gap-3', excludeDisabledWeek(month)?.lastRow ? "grid-rows-7" : "grid-rows-6")}>
+        <div className={cn('w-full grid grid-cols-7 gap-1 sm:gap-3', excludeDisabledWeek(month)?.lastRow ? "grid-rows-7" : "grid-rows-6")}>
             {dayHeader.map((day) => {
                 return <div className={cn("w-full md:shadow-md aspect-[9/16] md:aspect-video rounded-md", day.bg, day.text)} key={day.day}>
                     <div className="w-full h-full p-2">
@@ -65,7 +65,7 @@ const Month = () => {
                         >
                             <div className="w-full h-full p-2 flex flex-col items-start">
                                 <p className="font-medium text-xs lg:text-sm lx:text-base">{day.format('DD').toString()}</p>
-                                {getCurrentDay(day) && (<p className="font-medium text-[10px] sm:text-sm ">TODAY</p>)}
+                                {getCurrentDay(day) && (<p className="max-sm:hidden block font-medium text-[10px] sm:text-sm ">TODAY</p>)}
                             </div>
                         </Button>
                     })}

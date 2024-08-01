@@ -10,7 +10,7 @@ const Calendar = () => {
     return (
         <div className='w-full'>
             <div className="w-full overflow-x-auto">
-                {calendarProp === "month" ? <MonthContainer /> : calendarProp === "day" ? <DayContainer /> : calendarProp === "week" ? <WeekContainer /> : <p>none</p> }
+                {calendarProp === "month" ? <MonthContainer /> : calendarProp === "day" ? <DayContainer /> : calendarProp === "week" ? <WeekContainer /> : <p>none</p>}
             </div>
         </div >
     )

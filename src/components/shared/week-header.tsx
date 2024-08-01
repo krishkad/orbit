@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 import { Button } from '../ui/button'
-import { Calendar, CalendarRange, ChevronLeft, ChevronRight, Plus } from 'lucide-react'
+import { Calendar, CalendarRange, ChevronLeft, ChevronRight, Plus, Sun } from 'lucide-react'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/redux-hooks'
 import { changeCalendarProp, changeWeekNumber } from '@/redux/features/calendar-slice'
 import { deserializeMonth, excludeDisabledWeek, getCurrentWeekInMonth } from '@/lib/utils';
@@ -42,8 +42,9 @@ const WeekHeader = () => {
                             <ChevronRight className='w-4 h-4' />
                         </Button>
                         <Button variant={'outline'} onClick={() => dispatch(changeWeekNumber(weekIdx))} className='flex items-center justify-center gap-2'>
-                            <CalendarRange className='w-4 h-4' />
-                            Today
+                            <Sun className='w-4 h-4' />
+                            <span className="max-sm:hidden">Today</span>
+
                         </Button>
                     </div>
 

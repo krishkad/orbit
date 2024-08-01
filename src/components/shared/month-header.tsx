@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { Button } from '../ui/button';
 import dayjs from 'dayjs';
-import { CalendarHeart, CalendarRange } from 'lucide-react';
+import { CalendarHeart, CalendarRange, Sun } from 'lucide-react';
 import SmallCalendar from './small-calendar';
 import { useAppDispatch } from '@/redux/hooks/redux-hooks';
 import { changeCalendarProp, changeMonth, changeMonthNumber, changeSmallCalendar, changeSmallCalendarMonthNumber, } from '@/redux/features/calendar-slice';
@@ -31,7 +31,7 @@ const MonthHeader = () => {
                         className='flex justify-center items-center gap-2'
                     >
                         <CalendarRange className='w-4 h-4' />
-                        Week
+                        <span className="max-sm:hidden">Week</span>
                     </Button>
                     <Button
                         variant={'outline'}
@@ -43,8 +43,8 @@ const MonthHeader = () => {
                         }}
                         className='flex justify-center items-center gap-2'
                     >
-                        <CalendarHeart className='w-4 h-4' />
-                        Today
+                        <Sun className='w-4 h-4' />
+                        <span className="max-sm:hidden">Today</span>
                     </Button>
                 </div>
             </div>
