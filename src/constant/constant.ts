@@ -310,7 +310,7 @@ export const sampleWeekEvents = [
         top: 0,
         color: 'bg-primary',
         height: 120,
-        day: dayjs(new Date(2024, 6, new Date().getDate()))
+        day: dayjs(new Date(2024, new Date().getMonth(), new Date().getDate()))
     },
     {
         id: generateUID(),
@@ -319,7 +319,7 @@ export const sampleWeekEvents = [
         top: 540,
         color: 'bg-[#FFA823]',
         height: 60,
-        day: dayjs(new Date(2024, 6, new Date().getDate()))
+        day: dayjs(new Date(2024, new Date().getMonth(), new Date().getDate()))
     },
     {
         id: generateUID(),
@@ -328,7 +328,7 @@ export const sampleWeekEvents = [
         top: 300,
         color: 'bg-[#5BB318]',
         height: 60,
-        day: dayjs(new Date(2024, 6, new Date().getDate()))
+        day: dayjs(new Date(2024, new Date().getMonth(), new Date().getDate()))
     },
     {
         id: generateUID(),
@@ -337,7 +337,7 @@ export const sampleWeekEvents = [
         top: 660,
         color: 'bg-[#ff6600]',
         height: 60,
-        day: dayjs(new Date(2024, 6, new Date().getDate()))
+        day: dayjs(new Date(2024, new Date().getMonth(), new Date().getDate()))
     },
     {
         id: generateUID(),
@@ -346,7 +346,7 @@ export const sampleWeekEvents = [
         top: 0,
         color: 'bg-primary',
         height: 60,
-        day: dayjs(new Date(2024, 6, new Date().getDate() - 1))
+        day: dayjs(new Date(2024, new Date().getMonth(), new Date().getDate() - 1))
     },
     {
         id: generateUID(),
@@ -355,7 +355,7 @@ export const sampleWeekEvents = [
         top: 540,
         color: 'bg-[#FFA823]',
         height: 240,
-        day: dayjs(new Date(2024, 6, new Date().getDate() - 1))
+        day: dayjs(new Date(2024, new Date().getMonth(), new Date().getDate() - 1))
     },
     {
         id: generateUID(),
@@ -364,7 +364,7 @@ export const sampleWeekEvents = [
         top: 300,
         color: 'bg-[#5BB318]',
         height: 60,
-        day: dayjs(new Date(2024, 6, new Date().getDate() - 1))
+        day: dayjs(new Date(2024, new Date().getMonth(), new Date().getDate() - 1))
     },
     {
         id: generateUID(),
@@ -373,7 +373,7 @@ export const sampleWeekEvents = [
         top: 660,
         color: 'bg-[#ff6600]',
         height: 120,
-        day: dayjs(new Date(2024, 6, new Date().getDate() - 1))
+        day: dayjs(new Date(2024, new Date().getMonth(), new Date().getDate() - 1))
     },
     {
         id: generateUID(),
@@ -382,7 +382,7 @@ export const sampleWeekEvents = [
         top: 0,
         color: 'bg-primary',
         height: 60,
-        day: dayjs(new Date(2024, 6, new Date().getDate() + 1))
+        day: dayjs(new Date(2024, new Date().getMonth(), new Date().getDate() + 1))
     },
     {
         id: generateUID(),
@@ -391,7 +391,7 @@ export const sampleWeekEvents = [
         top: 540,
         color: 'bg-[#FFA823]',
         height: 60,
-        day: dayjs(new Date(2024, 6, new Date().getDate() + 1))
+        day: dayjs(new Date(2024, new Date().getMonth(), new Date().getDate() + 1))
     },
     {
         id: generateUID(),
@@ -400,7 +400,7 @@ export const sampleWeekEvents = [
         top: 300,
         color: 'bg-[#5BB318]',
         height: 60,
-        day: dayjs(new Date(2024, 6, new Date().getDate() + 1))
+        day: dayjs(new Date(2024, new Date().getMonth(), new Date().getDate() + 1))
     },
     {
         id: generateUID(),
@@ -409,7 +409,7 @@ export const sampleWeekEvents = [
         top: 660,
         color: 'bg-[#ff6600]',
         height: 60,
-        day: dayjs(new Date(2024, 6, new Date().getDate() + 1))
+        day: dayjs(new Date(2024, new Date().getMonth(), new Date().getDate() + 1))
     },
 
 
