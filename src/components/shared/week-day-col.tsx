@@ -41,7 +41,7 @@ const WeekDayCol = ({
 
     return (
         <div
-            className={cn("w-full min-w-[100px] h-full border-r", check && 'bg-zinc-100 pointer-events-none text-zinc-400')}
+            className={cn("w-full min-w-[100px] h-full border-r border-border", check && 'bg-zinc-100 pointer-events-none text-zinc-400')}
             ref={setRefs}
         >
             <div

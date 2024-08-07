@@ -34,8 +34,10 @@ import {
 
 
 import LocationNavigator from '@/components/shared/location-navigation';
+import { useTheme } from 'next-themes';
 
 const ToolsNavbar = () => {
+    const { theme, setTheme } = useTheme();
     return (
         <header className="w-full flex h-14 items-center gap-4 px-4 lg:h-[60px] lg:px-6 bg-secondary">
             <Sheet>
@@ -133,7 +135,11 @@ const ToolsNavbar = () => {
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem>Settings</DropdownMenuItem>
-                    <DropdownMenuItem>Support</DropdownMenuItem>
+                    <>{theme === 'light' ?
+                        <DropdownMenuItem onClick={() => setTheme('dark')}>Dark</DropdownMenuItem> :
+                        <DropdownMenuItem onClick={() => setTheme('light')}>Light</DropdownMenuItem>
+                    }
+                    </>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem>Logout</DropdownMenuItem>
                 </DropdownMenuContent>

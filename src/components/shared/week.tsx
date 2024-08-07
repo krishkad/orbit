@@ -115,16 +115,16 @@ const Week = () => {
 
     return (
         <div className="w-full h-full">
-            <div className="w-full h-[60px] flex items-center justify-center border">
-                <div className='w-[70px] lg:w-[120px] h-[60px] bg-slate-50 flex justify-start items-center sticky top-0'>
-                    <div className="w-full border-b border-t border-r border-collapse p-3 h-full flex justify-center items-center">
+            <div className="w-full h-[60px] flex items-center justify-center border dark:border-zinc-500">
+                <div className='w-[70px] lg:w-[120px] h-[60px] bg-secondary flex justify-start items-center sticky top-0'>
+                    <div className="w-full border-t border-r dark:border-zinc-500 border-collapse p-3 h-full flex justify-center items-center">
                         <p className="text-sm font-medium">
                             Time
                         </p>
                     </div>
                 </div>
                 <div className="w-[calc(100%-70px)] lg:w-[calc(100%-120px)] overflow-x-scroll no-scrollbar" ref={ref2}>
-                    <div className="w-full min-w-max grid grid-cols-7 h-[60px] sticky top-0 bg-white z-20">
+                    <div className="w-full min-w-max grid grid-cols-7 h-[60px] sticky top-0 bg-secondary z-20">
 
                         {month[week].map((weekDay: any, i: number) => {
                             const currentDay = getCurrentDay(dayjs(weekDay));
@@ -132,7 +132,8 @@ const Week = () => {
 
                             return (
                                 <div
-                                    className={cn("w-full min-w-[100px] h-full border-r border-y", check && 'bg-zinc-100 pointer-events-none text-zinc-400')}
+                                    className={cn("w-full min-w-[100px] h-full dark:border-zinc-500 border-t",
+                                        check && 'bg-zinc-100 pointer-events-none text-zinc-400', i !== 6 && 'border-r')}
                                     key={i}
                                     aria-disabled={check}
 
@@ -148,12 +149,12 @@ const Week = () => {
                     </div>
                 </div>
             </div>
-            <div className="w-full h-[calc(100dvh-330px)] md:h-[calc(100dvh-200px)] overflow-x-hidden overflow-y-scroll no-scrollbar relative border-r border-b border-l border-collapse" >
+            <div className="w-full h-[calc(100dvh-330px)] md:h-[calc(100dvh-200px)] overflow-x-hidden overflow-y-scroll no-scrollbar relative border-r border-b border-l border dark:border-zinc-500 border-collapse" >
                 <div className="w-full h-max flex items-center justify-center">
                     <div className="w-[70px] lg:w-[120px] grid grid-rows-24">
                         {daysHours.map((time: any, i: number) => {
-                            return <div key={i} className='w-full h-[60px] bg-slate-50 flex justify-start items-center'>
-                                <div className="w-full border-b border-r border-collapse p-3 h-full ">
+                            return <div key={i} className='w-full h-[60px] bg-secondary flex justify-start items-center'>
+                                <div className={cn("w-full dark:border-zinc-500 border-r border-collapse p-3 h-full ", time !== '23:00' && 'border-b')}>
                                     <p className="text-sm font-medium">
                                         {time}
                                     </p>

@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useState } from 'react'
 import dayjs from 'dayjs';
-import { calculateStartAndEndTimes, deserializeDayHours, getDayHours, roundToNearestFive } from '@/lib/utils';
+import { calculateStartAndEndTimes, cn, deserializeDayHours, getDayHours, roundToNearestFive } from '@/lib/utils';
 import SchedulerDialog from './scheduler-dialog';
 import { useAppSelector } from '@/redux/hooks/redux-hooks';
 import { motion, useMotionValue } from 'framer-motion';
@@ -58,8 +58,8 @@ const Day = () => {
             <div className="h-max flex justify-center" >
                 <motion.div ref={dayConstraintsRef} className="w-[120px] grid grid-rows-24">
                     {Deday.map((time: any, i: number) => {
-                        return <div key={i} className='w-full h-[60px] bg-slate-50 flex justify-start items-center'>
-                            <div className="w-full border border-collapse  p-3 h-full">
+                        return <div key={i} className='w-full h-[60px] bg-secondary  flex justify-start items-center'>
+                            <div className={cn("w-full dark:border-zinc-500 border-b border-l border-collapse p-3 h-full", i === 0 && 'border-t')}>
                                 <p className="text-sm font-medium">
                                     {time}
                                 </p>
@@ -67,7 +67,7 @@ const Day = () => {
                         </div>
                     })}
                 </motion.div>
-                <div className="h-[1440px] w-[calc(100%-120px)] border border-collapse  cursor-pointer relative"
+                <div className="h-[1440px] w-[calc(100%-120px)] border border-zinc-500 border-collapse  cursor-pointer relative"
                     onDoubleClick={() => {
                         setdialogOpen(true);
                         // setselectDay({ day: day.toISOString(), time: time });
