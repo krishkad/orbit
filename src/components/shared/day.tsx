@@ -59,7 +59,7 @@ const Day = () => {
                 <motion.div ref={dayConstraintsRef} className="w-[120px] grid grid-rows-24">
                     {Deday.map((time: any, i: number) => {
                         return <div key={i} className='w-full h-[60px] bg-secondary  flex justify-start items-center'>
-                            <div className={cn("w-full dark:border-zinc-500 border-b border-l border-collapse p-3 h-full", i === 0 && 'border-t')}>
+                            <div className={cn("w-full dark:border-zinc-600 border-b border-l border-collapse p-3 h-full", i === 0 && 'border-t')}>
                                 <p className="text-sm font-medium">
                                     {time}
                                 </p>
@@ -67,7 +67,7 @@ const Day = () => {
                         </div>
                     })}
                 </motion.div>
-                <div className="h-[1440px] w-[calc(100%-120px)] border border-border border-collapse  cursor-pointer relative"
+                <div className="h-[1440px] w-[calc(100%-120px)] border dark:border-zinc-600 border-collapse  cursor-pointer relative"
                     onDoubleClick={() => {
                         setdialogOpen(true);
                         // setselectDay({ day: day.toISOString(), time: time });
