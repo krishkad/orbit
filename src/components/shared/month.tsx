@@ -49,7 +49,7 @@ const Month = () => {
                         return <Button
                             variant={'none'}
                             size={'none'}
-                            className={cn(`w-full shadow-md aspect-[9/16] md:aspect-video transition-all duration-100 md:rounded-md`, dayHeader[index].hoverBg, getCurrentDay(day) && dayHeader[index].active)}
+                            className={cn(`w-full shadow-md aspect-[9/16] md:aspect-video transition-all duration-100 md:rounded-md border border-border`, dayHeader[index].hoverBg, getCurrentDay(day) && dayHeader[index].active)}
                             key={index}
                             disabled={
                                 new Date(day).getMonth() > new Date(dayjs().year(), monthNumber).getMonth() || new Date(day).getMonth() < new Date(dayjs().year(), monthNumber).getMonth()

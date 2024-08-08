@@ -67,7 +67,7 @@ const Day = () => {
                         </div>
                     })}
                 </motion.div>
-                <div className="h-[1440px] w-[calc(100%-120px)] border border-zinc-500 border-collapse  cursor-pointer relative"
+                <div className="h-[1440px] w-[calc(100%-120px)] border border-border border-collapse  cursor-pointer relative"
                     onDoubleClick={() => {
                         setdialogOpen(true);
                         // setselectDay({ day: day.toISOString(), time: time });

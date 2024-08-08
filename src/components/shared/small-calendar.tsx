@@ -39,7 +39,7 @@ const SmallCalendar = () => {
                     <h1 className="text-base sm:text-2xl font-semibold">{dayjs(new Date(dayjs().year(), monthNumber)).format('MMMM YYYY')}</h1>
                 </div>
             </PopoverTrigger>
-            <PopoverContent className="w-max">
+            <PopoverContent className="w-max border-border">
                 <div className="space-y-2">
                     <div className="flex justify-between items-center">
                         <Button size={'icon'} variant={'outline'} onClick={() => {
@@ -61,7 +61,7 @@ const SmallCalendar = () => {
                     </div>
                     <div className={cn("", excludeDisabledWeek(month)?.lastRow ? "grid grid-cols-7 grid-rows-7 gap-2 " : "grid grid-cols-7 grid-rows-6 gap-2 ")}>
                         {dayHeader.map((day, i) => {
-                            return <div className="aspect-square w-8 bg-slate-50 flex items-center justify-center text-xs font-medium rounded-md" key={i}>
+                            return <div className="aspect-square w-8 bg-secondary flex items-center justify-center text-xs font-medium rounded-md" key={i}>
                                 {day.Label.slice(0, 1)}
                             </div>
                         })}
@@ -69,7 +69,7 @@ const SmallCalendar = () => {
                             return row.map((day: any, i: number) => {
                                 return <Button
                                     variant={'ghost'}
-                                    className={cn("aspect-square w-8 h-8 hover:bg-slate-100 flex items-center justify-center text-xs font-medium rounded-md", getCurrentDay(day) && 'bg-slate-100')}
+                                    className={cn("aspect-square w-8 h-8 hover:bg-secondary flex items-center justify-center text-xs font-medium rounded-md", getCurrentDay(day) && 'bg-secondary')}
                                     key={i}
                                     disabled={
                                         new Date(day).getMonth() > new Date(dayjs().year(), smallCalendarMonthNumber).getMonth() || new Date(day).getMonth() < new Date(dayjs().year(), smallCalendarMonthNumber).getMonth()
@@ -79,7 +79,6 @@ const SmallCalendar = () => {
                                         dispatch(changeMonth(getMonth(smallCalendarMonthNumber)));
 
                                     }}
-
                                 >
                                     {day.format('D')}
                                 </Button>
