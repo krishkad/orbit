@@ -1,15 +1,8 @@
 "use client";
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { calculateStartAndEndTimes, cn, generateUID, getTimeInHours, roundToNearestDay, roundToNearestFive } from '@/lib/utils';
-import dayjs from 'dayjs';
-import {
-    ResizableHandle,
-    ResizablePanel,
-    ResizablePanelGroup,
-} from "@/components/ui/resizable";
+import React, { useEffect, useRef, useState } from 'react';
+import { calculateStartAndEndTimes, cn, getTimeInHours, roundToNearestDay, roundToNearestFive } from '@/lib/utils';
 import { useDndMonitor, useDraggable } from '@dnd-kit/core';
 import { RightClick } from './right-click';
-import { ActiveDraggableContext } from '@dnd-kit/core/dist/components/DndContext';
 
 
 const DayEvent = ({

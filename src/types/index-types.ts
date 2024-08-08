@@ -65,5 +65,5 @@ export interface EventProps {
     top: number,
     color: string,
     height: number,
-    day: Dayjs
+    day: Dayjs | string
 } 

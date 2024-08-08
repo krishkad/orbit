@@ -18,6 +18,8 @@ import dayjs from 'dayjs';
 import { Textarea } from '../ui/textarea';
 import { sampleEvents } from '@/constant/constant';
 import { Check, CircleCheck } from 'lucide-react';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks/redux-hooks';
+import { changeEvents } from '@/redux/features/calendar-slice';
 
 
 const SchedulerDialog = ({
@@ -26,19 +28,18 @@ const SchedulerDialog = ({
     day,
     time,
     y,
-    eventList,
-    setEventList
+
 }: {
     dialogOpen: boolean,
     setDialogOpen: (value: boolean) => void,
-    day: any,
+    day: string,
     time?: string,
     y: number,
-    eventList: any,
-    setEventList: (value: any) => void
 
 }) => {
     const yPosition = roundToNearestSixty(y);
+    const events = useAppSelector(state => state.calendar.events)
+    const dispatch = useAppDispatch();
 
     const [eventInfo, setEventInfo] = useState({
         id: generateUID(),
@@ -56,11 +57,14 @@ const SchedulerDialog = ({
         const UID = generateUID();
         setEventInfo({ ...eventInfo, [e.target.name]: e.target.value, top: yPosition, day, id: UID });
     };
+
+
     const handleSchedularTask = (e: any) => {
         e.preventDefault();
-        eventList.push(eventInfo);
-        setEventList(eventList);
-        console.log({ list: eventList });
+        dispatch(changeEvents([...events, eventInfo]))
+        // events.push(eventInfo);
+        // dispatch(changeEvents(events));
+        // console.log({ list: events });
     };
 
 
@@ -100,7 +104,7 @@ const SchedulerDialog = ({
                         <div className="flex justify-start items-baseline gap-2">
                             <h2 className="text-2xl font-semibold">{getTimeInHours(roundToNearestSixty(y))}</h2>
                             <div className="flex justify-center items-baseline">
-                                {getCurrentDay(day) ? <Badge variant={'secondary'} className="text-xs font-semibold">Today</Badge> : <h2 className="text-base font-semibold">{dayjs(new Date(day)).format("DD MMM")}</h2>}
+                                {getCurrentDay(dayjs(day)) ? <Badge variant={'secondary'} className="text-xs font-semibold">Today</Badge> : <h2 className="text-base font-semibold">{dayjs(new Date(day)).format("DD MMM")}</h2>}
                             </div>
                         </div>
                     </DialogTitle>

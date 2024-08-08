@@ -1,7 +1,7 @@
 "use client";
 import { sampleWeekEvents } from '@/constant/constant';
 import { cn, deserializeDayHours, deserializeMonth, excludeDisabledWeek, getCurrentDay, getCurrentWeekInMonth, getDayHours, roundToNearestFive } from '@/lib/utils';
-import { changeWeekNumber } from '@/redux/features/calendar-slice';
+import { changeEvents, changeWeekNumber } from '@/redux/features/calendar-slice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/redux-hooks';
 import dayjs from 'dayjs';
 import React, { useEffect, useRef, useState } from 'react'
@@ -22,6 +22,7 @@ const Week = () => {
     const monthNumber = useAppSelector((state) => state.calendar.monthNumber);
     const week = useAppSelector((state) => state.calendar.weekNumber);
     const serializedMonth = useAppSelector((state) => state.calendar.month);
+    const events = useAppSelector((state) => state.calendar.events);
     const rawMonth = deserializeMonth(serializedMonth);
     const month = excludeDisabledWeek(rawMonth)?.month;
     const weekIdx = getCurrentWeekInMonth(month);
@@ -32,7 +33,7 @@ const Week = () => {
         day: dayjs(new Date()),
         y: 0
     });
-    const [eventList, setEventList] = useState(sampleWeekEvents);
+    // const [eventList, setEventList] = useState(sampleWeekEvents);
     const dispatch = useAppDispatch();
 
     const ref1 = useRef(null);
@@ -74,6 +75,7 @@ const Week = () => {
     useEffect(() => {
         // dispatch(changeWeek(month[week]));
         dispatch(changeWeekNumber(weekIdx));
+        dispatch(changeEvents(sampleWeekEvents))
     }, [])
 
 
@@ -105,11 +107,11 @@ const Week = () => {
     function handleOnDragEnd(event: DragEndEvent) {
         const { active, over } = event;
         if (active && over && active?.data?.current?.day.format('YYYY-MM-DD') !== over.id) {
-            const activeEvent = eventList.filter((event) => event.id === active.id)[0];
-            const tempList = eventList.filter((event) => event.id !== active.id);
-            const updatedEvent = { ...activeEvent, day: dayjs(over.id), top: activeEvent.top + roundToNearestFive(event.delta.y) };
+            const activeEvent = events.filter((event) => event.id === active.id)[0];
+            const tempList = events.filter((event) => event.id !== active.id);
+            const updatedEvent = { ...activeEvent, day: dayjs(over.id).toISOString(), top: activeEvent.top + roundToNearestFive(event.delta.y) };
             const newList = tempList.concat(updatedEvent);
-            setEventList(newList);
+            dispatch(changeEvents(newList));
         }
     }
 
@@ -173,7 +175,7 @@ const Week = () => {
 
                                     const check = new Date(weekDay).getMonth() > new Date(dayjs().year(), monthNumber).getMonth() || new Date(weekDay).getMonth() < new Date(dayjs().year(), monthNumber).getMonth();
 
-                                    const filteredEvents = eventList.filter((event) => event.day.format('YYYY MM DD') === weekDay.format('YYYY MM DD')
+                                    const filteredEvents = events.filter((event) => dayjs(event.day).format('YYYY MM DD') === weekDay.format('YYYY MM DD')
                                     );
 
 
@@ -184,7 +186,7 @@ const Week = () => {
                                             handleTouchEnd={handleTouchEnd}
                                             parentRef={parentRef}
                                             weekDay={weekDay}
-                                            eventList={eventList}
+                                            eventList={events}
                                             ref3={ref3}
                                             key={i}
                                         />
@@ -200,10 +202,10 @@ const Week = () => {
             <SchedulerDialog
                 dialogOpen={dialogOpen}
                 setDialogOpen={setDialogOpen}
-                day={eventDate.day}
+                day={eventDate.day.toISOString()}
                 y={eventDate.y}
-                eventList={eventList}
-                setEventList={setEventList}
+            // eventList={events}
+            // setEventList={setEventList}
             />
 
         </div>

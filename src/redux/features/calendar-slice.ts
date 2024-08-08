@@ -1,4 +1,6 @@
+import { sampleWeekEvents } from "@/constant/constant";
 import { getMonth } from "@/lib/utils";
+import { EventProps } from "@/types/index-types";
 import { createSlice } from "@reduxjs/toolkit";
 import dayjs, { Dayjs } from "dayjs";
 
@@ -12,6 +14,7 @@ interface CalendarTypes {
     day: any;
     week: any;
     weekNumber: number;
+    events: EventProps[]
 
 };
 
@@ -23,7 +26,8 @@ const initialState: CalendarTypes = {
     calendarProp: "month",
     day: dayjs().toISOString(),
     week: null,
-    weekNumber: 0
+    weekNumber: 0,
+    events: sampleWeekEvents
 };
 
 
@@ -55,9 +59,12 @@ export const CalendarSlice = createSlice({
         changeWeekNumber: (state, action) => {
             state.weekNumber = action.payload
         },
+        changeEvents: (state, action) => {
+            state.events = action.payload
+        }
     },
 
 });
 
-export const { changeMonth, changeMonthNumber, changeSmallCalendar, changeSmallCalendarMonthNumber, changeCalendarProp, changeDay, changeWeek, changeWeekNumber } = CalendarSlice.actions;
+export const { changeMonth, changeMonthNumber, changeSmallCalendar, changeSmallCalendarMonthNumber, changeCalendarProp, changeDay, changeWeek, changeWeekNumber, changeEvents } = CalendarSlice.actions;
 export default CalendarSlice.reducer;

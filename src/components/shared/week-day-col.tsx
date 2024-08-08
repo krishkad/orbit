@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 import React, { useEffect } from 'react'
 import DayEvent from './day-event';
-import { Dayjs } from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import { EventProps } from '@/types/index-types';
 import { useDroppable } from '@dnd-kit/core';
 
@@ -31,7 +31,7 @@ const WeekDayCol = ({
     });
 
     const filteredEvents = eventList.filter((event) =>
-        event.day.format('YYYY MM DD') === weekDay.format('YYYY MM DD'));
+        dayjs(event.day).format('YYYY MM DD') === weekDay.format('YYYY MM DD'));
 
     function setRefs(node: any) {
         setNodeRef(node);
