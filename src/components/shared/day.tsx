@@ -104,13 +104,11 @@ const Day = () => {
                 </div>
             </div>
             <SchedulerDialog
-                day={day}
+                day={day.toISOString()}
                 time={selectDay.time}
                 dialogOpen={dialogOpen}
                 setDialogOpen={setdialogOpen}
                 y={0}
-                eventList={eventList}
-                setEventList={setEventList}
             />
         </div>
     )
