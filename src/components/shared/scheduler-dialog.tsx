@@ -98,7 +98,7 @@ const SchedulerDialog = ({
 
     return (
         <Dialog open={dialogOpen} onOpenChange={() => setDialogOpen(false)}>
-            <DialogContent className="w-[90%] sm:max-w-[425px]">
+            <DialogContent className="w-[90%] sm:max-w-[425px] border-border" onOpenAutoFocus={(e: any) => e.preventDefault()}>
                 <DialogHeader>
                     <DialogTitle>
                         <div className="flex justify-start items-baseline gap-2">

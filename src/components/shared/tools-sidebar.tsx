@@ -43,7 +43,7 @@ const ToolsSidebar = () => {
                                 <span className="sr-only">Search Prospects</span>
                             </Link>
                         </TooltipTrigger>
-                        <TooltipContent side="right">Search Prospects</TooltipContent>
+                        <TooltipContent side="right" className='border-border'>Search Prospects</TooltipContent>
                     </Tooltip>
                     <Tooltip>
                         <TooltipTrigger asChild>
@@ -55,7 +55,7 @@ const ToolsSidebar = () => {
                                 <span className="sr-only">Saved</span>
                             </Link>
                         </TooltipTrigger>
-                        <TooltipContent side="right">Saved</TooltipContent>
+                        <TooltipContent side="right" className='border-border'>Saved</TooltipContent>
                     </Tooltip>
                     <Tooltip>
                         <TooltipTrigger asChild>
@@ -67,7 +67,7 @@ const ToolsSidebar = () => {
                                 <span className="sr-only">To Do</span>
                             </Link>
                         </TooltipTrigger>
-                        <TooltipContent side="right">To Do</TooltipContent>
+                        <TooltipContent side="right" className='border-border'>To Do</TooltipContent>
                     </Tooltip>
                     <Tooltip>
                         <TooltipTrigger asChild>
@@ -79,7 +79,7 @@ const ToolsSidebar = () => {
                                 <span className="sr-only">Calendar</span>
                             </Link>
                         </TooltipTrigger>
-                        <TooltipContent side="right">Calendar</TooltipContent>
+                        <TooltipContent side="right" className='border-border'>Calendar</TooltipContent>
                     </Tooltip>
                     <Tooltip>
                         <TooltipTrigger asChild>
@@ -91,7 +91,7 @@ const ToolsSidebar = () => {
                                 <span className="sr-only">Email Manager</span>
                             </Link>
                         </TooltipTrigger>
-                        <TooltipContent side="right">Email Manager</TooltipContent>
+                        <TooltipContent side="right" className='border-border'>Email Manager</TooltipContent>
                     </Tooltip>
                 </TooltipProvider>
             </nav>
@@ -107,7 +107,7 @@ const ToolsSidebar = () => {
                                 <span className="sr-only">Settings</span>
                             </Link>
                         </TooltipTrigger>
-                        <TooltipContent side="right">Settings</TooltipContent>
+                        <TooltipContent side="right" className='border-border'>Settings</TooltipContent>
                     </Tooltip>
                 </TooltipProvider>
             </nav>

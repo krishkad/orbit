@@ -134,7 +134,7 @@ const ToolsNavbar = () => {
                 <DropdownMenuContent align="end" className='border-border'>
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem>Settings</DropdownMenuItem>
+                    <DropdownMenuItem>Profile</DropdownMenuItem>
                     <>{theme === 'light' ?
                         <DropdownMenuItem onClick={() => setTheme('dark')}>Dark</DropdownMenuItem> :
                         <DropdownMenuItem onClick={() => setTheme('light')}>Light</DropdownMenuItem>

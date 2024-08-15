@@ -107,6 +107,7 @@ const Week = () => {
     function handleOnDragEnd(event: DragEndEvent) {
         const { active, over } = event;
         if (active && over && active?.data?.current?.day.format('YYYY-MM-DD') !== over.id) {
+            console.log("week on drag")
             const activeEvent = events.filter((event) => event.id === active.id)[0];
             const tempList = events.filter((event) => event.id !== active.id);
             const updatedEvent = { ...activeEvent, day: dayjs(over.id).toISOString(), top: activeEvent.top + roundToNearestFive(event.delta.y) };

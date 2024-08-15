@@ -10,7 +10,7 @@ const Hero = () => {
                 <div className="w-full pt-16 flex flex-col items-center justify-center">
                     <h1 className="font-extrabold text-4xl text-center">Say goodbye to hassle. <br className='max-sm:hidden' />Prospecting as been easy as ever</h1>
                     <p className="text-sm text-muted-foreground text-center pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, pariatur eaque? <br className='max-sm:hidden' />Esse eveniet voluptatibus ex ea!</p>
-                    <Link href={'/tools/search-prospect'} className={cn(buttonVariants({ variant: "outline" }), "rounded-full text-sm font-semibold hover:bg-primary hover:text-primary-foreground hover:border-primary border-zinc-800 border-solid mt-4")}>Start Free Trial</Link>
+                    <Link href={'/tools/search-prospect'} className={cn(buttonVariants({ size: "default" }), "rounded-full text-sm font-semibold border text-foreground border-zinc-800 border-solid mt-4  bg-transparent hover:bg-primary hover:text-white hover:border-primary")}>Start Free Trial</Link>
                 </div>
             </main>
         </div>

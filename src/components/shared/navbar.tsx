@@ -24,7 +24,7 @@ const Navbar = () => {
                         </div>
                     </div>
                     <div className="hidden sm:flex items-center justify-center">
-                        <Link href={'/tools/search-prospect'} className={cn(buttonVariants({ variant: "outline" }), "rounded-full text-sm font-semibold hover:bg-primary hover:text-primary-foreground hover:border-primary border-zinc-800 border-solid")}>Start Free Trial</Link>
+                        <Link href={'/tools/search-prospect'} className={cn(buttonVariants({ size: "default" }), "rounded-full text-sm font-semibold border text-foreground border-zinc-800 border-solid bg-transparent hover:bg-primary hover:text-white hover:border-primary")}>Start Free Trial</Link>
                     </div>
                     <div className="block sm:hidden">
                         <AlignRight />

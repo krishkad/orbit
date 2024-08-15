@@ -3,6 +3,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { calculateStartAndEndTimes, cn, getTimeInHours, roundToNearestDay, roundToNearestFive } from '@/lib/utils';
 import { useDndMonitor, useDraggable } from '@dnd-kit/core';
 import { RightClick } from './right-click';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks/redux-hooks';
+import dayjs from 'dayjs';
+import { changeEvents } from '@/redux/features/calendar-slice';
 
 
 const DayEvent = ({
@@ -63,6 +66,8 @@ const DayEvent = ({
         id,
         data: { ...eventInfo, setEventInfo }
     });
+    const events = useAppSelector(state => state.calendar.events);
+    const dispatch = useAppDispatch();
 
 
 
@@ -92,18 +97,25 @@ const DayEvent = ({
             }
         },
         onDragEnd(event) {
-            if (event.active.id === id) {
+            const { active, over } = event;
+            if (event.active.id === id && eventInfo.day.format('YYYY-MM-DD') === over?.id) {
+                console.log(over?.id);
                 const ParentRect = parentRef.current.getBoundingClientRect();
                 const EventRect = ref.current.getBoundingClientRect();
                 const yTop = (EventRect.top - ParentRect.top);
                 const roundToFive = roundToNearestFive(yTop);
                 const { start, end } = calculateStartAndEndTimes(roundToFive, height);
-                setEventInfo(prevEventInfo => ({
-                    ...prevEventInfo,
-                    startTime: start,
-                    endTime: end,
-                    top: roundToFive
-                }));
+                // setEventInfo(prevEventInfo => ({
+                //     ...prevEventInfo,
+                //     startTime: start,
+                //     endTime: end,
+                //     top: roundToFive
+                // }));
+                const activeEvent = events.filter((event) => event.id === active.id)[0];
+                const tempList = events.filter((event) => event.id !== active.id);
+                const updatedEvent = { ...activeEvent, top: roundToFive };
+                const newList = tempList.concat(updatedEvent);
+                dispatch(changeEvents(newList));
                 setYAxis(roundToFive);
             }
             setOnDragStart(false);
