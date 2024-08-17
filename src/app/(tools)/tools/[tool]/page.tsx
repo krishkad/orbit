@@ -1,6 +1,7 @@
 import Calendar from '@/components/shared/calendar';
 import LeadTable from '@/components/shared/lead-table';
 import Saved from '@/components/shared/saved';
+import ToDo from '@/components/shared/to-do';
 import React, { useState } from 'react'
 
 const SearchPage = ({ params: { tool } }: { params: { tool: string } }) => {
@@ -10,7 +11,7 @@ const SearchPage = ({ params: { tool } }: { params: { tool: string } }) => {
       {
         tool === "search-prospect" ? <LeadTable /> :
           tool === 'saved' ? <Saved /> :
-            tool === 'todo' ? <h1>To Do</h1> :
+            tool === 'todo' ? <ToDo /> :
               tool === 'calendar' ? <Calendar /> :
                 tool === 'email-manager' ? <h1>Email Manager</h1> :
                   <h1>no page</h1>

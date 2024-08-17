@@ -57,4 +57,4 @@ const LeadTable = () => {
     )
 }
 
-export default LeadTable
+export default LeadTable;

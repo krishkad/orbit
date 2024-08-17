@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import Link from "next/link";
 import {
@@ -34,10 +35,10 @@ import {
 
 
 import LocationNavigator from '@/components/shared/location-navigation';
-import { useTheme } from 'next-themes';
+import ToolsDarkTog from './tools-dark-tog';
 
 const ToolsNavbar = () => {
-    const { theme, setTheme } = useTheme();
+
     return (
         <header className="w-full flex h-14 items-center gap-4 px-4 lg:h-[60px] lg:px-6 bg-secondary">
             <Sheet>
@@ -51,7 +52,7 @@ const ToolsNavbar = () => {
                         <span className="sr-only">Toggle navigation menu</span>
                     </Button>
                 </SheetTrigger>
-                <SheetContent side="left" className="flex flex-col" onOpenAutoFocus={(e: any) => e.preventDefault()}>
+                <SheetContent side="left" className="flex flex-col border-border" onOpenAutoFocus={(e: any) => e.preventDefault()}>
                     <SheetTitle>
                         <Link
                             href="/"
@@ -135,11 +136,7 @@ const ToolsNavbar = () => {
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem>Profile</DropdownMenuItem>
-                    <>{theme === 'light' ?
-                        <DropdownMenuItem onClick={() => setTheme('dark')}>Dark</DropdownMenuItem> :
-                        <DropdownMenuItem onClick={() => setTheme('light')}>Light</DropdownMenuItem>
-                    }
-                    </>
+                    <ToolsDarkTog />
                     <DropdownMenuSeparator />
                     <DropdownMenuItem>Logout</DropdownMenuItem>
                 </DropdownMenuContent>
