@@ -8,14 +8,17 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { Calendar, Hash, MailIcon, MailOpen, Mails, Plus } from 'lucide-react'
+import { Calendar, CalendarCheck, CalendarClock, Hash, MailIcon, MailOpen, Mails, Plus } from 'lucide-react'
 import { Button } from '../ui/button'
 import { cn } from '@/lib/utils'
+import ToDoBox from './todo-box'
+import { todoList } from '@/constant/constant'
+import { TodoItem } from '@/types/index-types'
 
 const ToDo = () => {
     const [toDoTime, setToDoTime] = useState<"today" | "inbox" | "upcomming">("today")
     return (
-        <div className='w-full h-full'>
+        <div className='w-full h-full mb-5'>
             <Card>
                 {/* <CardHeader>
                     <CardTitle>Today!</CardTitle>
@@ -72,7 +75,7 @@ const ToDo = () => {
                                 <p className='text-sm font-medium text-muted-foreground'>
                                     Stay focused. Stay productive. Let's make it happen!
                                 </p> */}
-                                <Card>
+                                <Card className='p-0 border-0'>
                                     <CardHeader>
                                         <CardTitle>
                                             {toDoTime === "today" ? <>Today!</>
@@ -84,11 +87,36 @@ const ToDo = () => {
                                         </CardDescription>
                                     </CardHeader>
                                     <CardContent>
-                                        <p>Card Content</p>
+                                        <div className="w-full space-y-5">
+                                            <div className="w-full space-y-2">
+                                                <h3 className="text-md font-semibold flex gap-2 items-center">
+                                                    <CalendarClock className='w-4 h-4' />
+                                                    Over due
+                                                </h3>
+                                                <div className="w-full flex max-sm:flex-col flex-wrap gap-5">
+                                                    {todoList.map((todo: TodoItem, i: number) => {
+                                                        if (!todo.isOverdue) return;
+                                                        return <ToDoBox todo={todo} key={i} />
+                                                    })}
+                                                </div>
+                                            </div>
+                                            <div className="w-full space-y-2">
+                                                <h3 className="text-md font-semibold flex gap-2 items-center">
+                                                    <CalendarCheck className='w-4 h-4' />
+                                                    Today
+                                                </h3>
+                                                <div className="w-full flex max-sm:flex-col flex-wrap gap-5">
+                                                    {todoList.map((todo: TodoItem, i: number) => {
+                                                        if (todo.isOverdue) return;
+                                                        return <ToDoBox todo={todo} key={i} />
+                                                    })}
+                                                </div>
+                                            </div>
+                                        </div>
                                     </CardContent>
-                                    <CardFooter>
+                                    {/* <CardFooter>
                                         <p>Card Footer</p>
-                                    </CardFooter>
+                                    </CardFooter> */}
                                 </Card>
 
                             </div>

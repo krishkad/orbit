@@ -1,5 +1,5 @@
 import { generateUID } from "@/lib/utils";
-import { HotelDetailsProps } from "@/types/index-types";
+import { HotelDetailsProps, TodoItem } from "@/types/index-types";
 import dayjs from "dayjs";
 
 export const navLinks = [
@@ -302,7 +302,7 @@ export const MonthsTitle = [
 ];
 
 
-export const sampleWeekEvents = [       
+export const sampleWeekEvents = [
     {
         id: generateUID(),
         title: "Event 1",
@@ -449,4 +449,60 @@ export const sampleEvents = [
         height: 60,
         color: 'bg-[#ff6600]'
     },
+];
+
+export const todoList: TodoItem[] = [
+    {
+        title: "Finish Project Report",
+        description: "Complete the final report for the project and submit it to the manager.",
+        createTime: "2024-08-20T10:00:00Z",
+        deadline: "2024-08-22T17:00:00Z",
+        isOverdue: true,
+        overdueDate: "2024-08-23T00:00:00Z"  // Example overdue date
+    },
+    {
+        title: "Buy Groceries",
+        description: "Buy milk, bread, eggs, and fruits for the week.",
+        createTime: "2024-08-23T08:00:00Z",
+        deadline: "2024-08-23T18:00:00Z",
+        isOverdue: false
+    },
+    {
+        title: "Doctor's Appointment",
+        description: "Attend the scheduled appointment with Dr. Smith.",
+        createTime: "2024-08-21T09:30:00Z",
+        deadline: "2024-08-21T15:00:00Z",
+        isOverdue: true,
+        overdueDate: "2024-08-22T00:00:00Z"  // Example overdue date
+    },
+    {
+        title: "Plan Weekend Trip",
+        description: "Research and book accommodations for the weekend getaway.",
+        createTime: "2024-08-22T14:00:00Z",
+        deadline: "2024-08-24T20:00:00Z",
+        isOverdue: false
+    },
+    {
+        title: "Send Birthday Card",
+        description: "Mail the birthday card to Sarah.",
+        createTime: "2024-08-18T10:00:00Z",
+        deadline: "2024-08-19T17:00:00Z",
+        isOverdue: true,
+        overdueDate: "2024-08-20T00:00:00Z"  // Example overdue date
+    },
+    {
+        title: "Team Meeting Preparation",
+        description: "Prepare slides and talking points for the upcoming team meeting.",
+        createTime: "2024-08-24T07:00:00Z",
+        deadline: "2024-08-25T09:00:00Z",
+        isOverdue: false
+    },
+    {
+        title: "Update Software",
+        description: "Install the latest updates for the software on the office computer.",
+        createTime: "2024-08-20T12:00:00Z",
+        deadline: "2024-08-21T12:00:00Z",
+        isOverdue: true,
+        overdueDate: "2024-08-22T00:00:00Z"  // Example overdue date
+    }
 ];

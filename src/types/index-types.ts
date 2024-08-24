@@ -66,4 +66,14 @@ export interface EventProps {
     color: string,
     height: number,
     day: Dayjs | string
-} 
+}
+
+
+export interface TodoItem {
+    title: string;
+    description: string;
+    createTime: string;  // ISO 8601 format
+    deadline: string;    // ISO 8601 format
+    isOverdue: boolean;
+    overdueDate?: string;  // ISO 8601 format, optional for overdue tasks only
+}
