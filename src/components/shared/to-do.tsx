@@ -18,7 +18,7 @@ import { TodoItem } from '@/types/index-types'
 const ToDo = () => {
     const [toDoTime, setToDoTime] = useState<"today" | "inbox" | "upcomming">("today")
     return (
-        <div className='w-full h-full mb-5'>
+        <div className='w-full h-full'>
             <Card className='border-0'>
                 {/* <CardHeader>
                     <CardTitle>Today!</CardTitle>
