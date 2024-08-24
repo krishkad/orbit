@@ -13,7 +13,7 @@ const ToolsLayout = ({ children }: { children: ReactNode }) => {
                     {/* <div className="flex flex-col sm:gap-4 sm:py-4 "> */}
                     <div className="w-full flex flex-col">
                         <ToolsNavbar />
-                        <div className="w-full min-h-[calc(100dvh-60px)] overflow-hidden rounded-[0.5rem] px-4 bg-secondary md:pb-5">
+                        <div className="w-full min-h-[calc(100dvh-60px)] overflow-hidden rounded-[0.5rem] bg-background md:pb-5">
                             {children}
                         </div>
                     </div>

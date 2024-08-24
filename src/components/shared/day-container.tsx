@@ -12,7 +12,7 @@ import Day from './day';
 
 const DayContainer = () => {
     return (
-        <Card className="w-full">
+        <Card className="w-full border-0">
             <CardHeader>
                 <DayHeader />
             </CardHeader>

@@ -14,7 +14,7 @@ import MonthFooter from './month-footer';
 const MonthContainer = () => {
 
     return (
-        <Card className="w-full">
+        <Card className="w-full border-0">
             <CardHeader>
                 <MonthHeader />
             </CardHeader>

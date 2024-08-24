@@ -39,7 +39,7 @@ const LeadTable = () => {
     }
 
     return (
-        <div className='w-full pb-10 space-y-8'>
+        <div className='w-full pb-10 space-y-8 px-4 sm:px-6'>
             <div className="h-16 w-full space-y-2">
                 <div className="flex gap-2">
                     <Input name='url' className='focus-visible:ring-0 focus-visible:ring-offset-0 min-w-56 max-w-80' onChange={handleSearch} placeholder='Google maps url..' />

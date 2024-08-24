@@ -4,7 +4,9 @@ import React from 'react'
 const Saved = () => {
   return (
     <div className='w-full h-screen'>
-      Saved
+      <div className="w-full px-4 sm:px-6">
+        Saved
+      </div>
     </div>
   )
 }

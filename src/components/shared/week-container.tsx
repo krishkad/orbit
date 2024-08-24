@@ -13,7 +13,7 @@ import WeekFooter from './week-footer'
 
 const WeekContainer = () => {
   return (
-    <Card >
+    <Card className='border-0'>
       <CardHeader>
         <WeekHeader />
       </CardHeader>

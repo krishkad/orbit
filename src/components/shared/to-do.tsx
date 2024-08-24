@@ -19,14 +19,14 @@ const ToDo = () => {
     const [toDoTime, setToDoTime] = useState<"today" | "inbox" | "upcomming">("today")
     return (
         <div className='w-full h-full mb-5'>
-            <Card>
+            <Card className='border-0'>
                 {/* <CardHeader>
                     <CardTitle>Today!</CardTitle>
                     <CardDescription>
                         <p>Stay focused. Stay productive. Let's make it happen!</p>
                     </CardDescription>
                 </CardHeader> */}
-                <CardContent className='p-0 sm:p-2'>
+                <CardContent className='max-sm:p-0'>
                     <div className="w-full flex items-start justify-center">
                         {/* // Desktop menu */}
                         <div className="max-sm:hidden sm:w-[230px]">
